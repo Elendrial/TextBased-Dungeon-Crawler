@@ -3,8 +3,8 @@ package me.laurence.dungeonCrawler.entities.living;
 import java.awt.Point;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
+import me.laurence.dungeonCrawler.ai.IEntityAI;
 import me.laurence.dungeonCrawler.entities.Entity;
-import me.laurence.dungeonCrawler.entities.ai.IEntityAI;
 import me.laurence.dungeonCrawler.handlers.PrintHandler;
 
 abstract public class EntityLiving extends Entity{
@@ -49,7 +49,7 @@ abstract public class EntityLiving extends Entity{
 	}
 
 	public EntityLiving setHealth(int health) {
-		this.health = health;
+		this.health = health > maxHealth ? maxHealth : health;
 		return this;
 	}
 

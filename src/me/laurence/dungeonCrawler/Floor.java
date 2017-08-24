@@ -3,8 +3,8 @@ package me.laurence.dungeonCrawler;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import me.laurence.dungeonCrawler.ai.IEntityAI;
 import me.laurence.dungeonCrawler.entities.Entity;
-import me.laurence.dungeonCrawler.entities.ai.IEntityAI;
 import me.laurence.dungeonCrawler.entities.stationary.EntityStairs;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
 import me.laurence.dungeonCrawler.handlers.PositionHandler;

@@ -2,7 +2,7 @@ package me.laurence.dungeonCrawler.entities.living;
 
 import java.awt.Point;
 
-import me.laurence.dungeonCrawler.entities.ai.AIHostile;
+import me.laurence.dungeonCrawler.ai.AIHostile;
 
 public class EntityGenericHostile extends EntityLiving{
 

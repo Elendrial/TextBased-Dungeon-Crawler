@@ -11,3 +11,4 @@ TODO list:
 - Create a decent floor generation system.
 - Create a basic inventory system.
 - Get rid of the PositionHandler for something better.
+- Create a status effect system.

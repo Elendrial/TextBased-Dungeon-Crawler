@@ -1,4 +1,4 @@
-package me.laurence.dungeonCrawler.entities.ai;
+package me.laurence.dungeonCrawler.ai;
 
 public interface IEntityAI {
 	
