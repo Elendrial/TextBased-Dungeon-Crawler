@@ -6,7 +6,7 @@ import me.laurence.dungeonCrawler.DungeonCrawler;
 import me.laurence.dungeonCrawler.ai.AIEmpty;
 import me.laurence.dungeonCrawler.ai.IEntityAI;
 import me.laurence.dungeonCrawler.entities.Entity;
-import me.laurence.dungeonCrawler.handlers.PrintHandler;
+import me.laurence.dungeonCrawler.general.PrintHandler;
 import me.laurence.dungeonCrawler.inventory.InventoryEquips;
 import me.laurence.dungeonCrawler.items.armour.ItemEquippable;
 

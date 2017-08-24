@@ -2,7 +2,7 @@ package me.laurence.dungeonCrawler.items.food;
 
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityLiving;
-import me.laurence.dungeonCrawler.handlers.PrintHandler;
+import me.laurence.dungeonCrawler.general.PrintHandler;
 import me.laurence.dungeonCrawler.items.Item;
 
 public class ItemFood extends Item{

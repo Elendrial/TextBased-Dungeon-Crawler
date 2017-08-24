@@ -1,10 +1,10 @@
 package me.laurence.dungeonCrawler.entities.stationary;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
-import me.laurence.dungeonCrawler.Stats;
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
-import me.laurence.dungeonCrawler.handlers.InputHandler;
+import me.laurence.dungeonCrawler.general.InputHandler;
+import me.laurence.dungeonCrawler.general.Stats;
 
 public class EntityStairs extends EntityStatic{
 	protected int floorMove; // -ve is up x floors, +ve is down x floors

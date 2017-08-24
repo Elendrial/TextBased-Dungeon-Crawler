@@ -3,8 +3,8 @@ package me.laurence.dungeonCrawler.entities;
 import java.awt.Point;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
-import me.laurence.dungeonCrawler.Stats;
-import me.laurence.dungeonCrawler.handlers.PrintHandler;
+import me.laurence.dungeonCrawler.general.PrintHandler;
+import me.laurence.dungeonCrawler.general.Stats;
 
 public abstract class Entity{
 	protected char charCode = ' ';

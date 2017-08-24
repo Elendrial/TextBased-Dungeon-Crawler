@@ -1,11 +1,10 @@
-package me.laurence.dungeonCrawler.handlers;
+package me.laurence.dungeonCrawler.general;
 
 import java.awt.Point;
 import java.util.HashMap;
 import java.util.Scanner;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
-import me.laurence.dungeonCrawler.Floor;
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
 
@@ -59,7 +58,7 @@ public class InputHandler {
 				if(s.split(" ").length > 0){
 					char[] s2 = s.split(" ")[1].toCharArray();
 					Floor f = DungeonCrawler.getFloor();
-					Point p = PositionHandler.clone(DungeonCrawler.player.getPosition());
+					Point p = new Point(DungeonCrawler.player.getPosition());
 					
 					switch(s2[0]){
 					case 'u': p.translate(0, -1); break;
@@ -81,7 +80,7 @@ public class InputHandler {
 				if(s.split(" ").length > 0){
 					char[] s2 = s.split(" ")[1].toCharArray();
 					Floor f = DungeonCrawler.getFloor();
-					Point p = PositionHandler.clone(DungeonCrawler.player.getPosition());
+					Point p = new Point(DungeonCrawler.player.getPosition());
 					
 					switch(s2[0]){
 					case 'u': p.translate(0, -1); break;

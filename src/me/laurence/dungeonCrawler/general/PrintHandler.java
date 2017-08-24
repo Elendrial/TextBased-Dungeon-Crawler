@@ -1,7 +1,5 @@
-package me.laurence.dungeonCrawler.handlers;
+package me.laurence.dungeonCrawler.general;
 
-import me.laurence.dungeonCrawler.Floor;
-import me.laurence.dungeonCrawler.Stats;
 import me.laurence.dungeonCrawler.entities.Entity;
 
 public class PrintHandler {

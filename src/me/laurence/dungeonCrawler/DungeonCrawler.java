@@ -5,8 +5,10 @@ import java.util.Random;
 
 import me.laurence.dungeonCrawler.entities.EntityList;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
-import me.laurence.dungeonCrawler.handlers.InputHandler;
-import me.laurence.dungeonCrawler.handlers.PrintHandler;
+import me.laurence.dungeonCrawler.general.Floor;
+import me.laurence.dungeonCrawler.general.InputHandler;
+import me.laurence.dungeonCrawler.general.PrintHandler;
+import me.laurence.dungeonCrawler.general.Stats;
 
 public class DungeonCrawler {
 	

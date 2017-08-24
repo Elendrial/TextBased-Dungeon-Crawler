@@ -4,6 +4,7 @@ import java.awt.Point;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
 import me.laurence.dungeonCrawler.entities.Entity;
+import me.laurence.dungeonCrawler.inventory.PlayerInventory;
 
 
 public class EntityPlayer extends EntityLiving{
@@ -20,6 +21,7 @@ public class EntityPlayer extends EntityLiving{
 		this.canPassThrough = true;
 		this.health = 10;
 		this.position = new Point(10, 5);
+		this.inventory = new PlayerInventory();
 	}
 
 	@Override

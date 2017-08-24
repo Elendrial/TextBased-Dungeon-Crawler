@@ -1,4 +1,4 @@
-package me.laurence.dungeonCrawler;
+package me.laurence.dungeonCrawler.general;
 
 public class Stats {
 	public static class Dungeon{
