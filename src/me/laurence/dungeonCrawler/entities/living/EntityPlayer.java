@@ -25,7 +25,7 @@ public class EntityPlayer extends EntityLiving{
 	@Override
 	public void onHit(Entity e){
 		super.onHit(e);
-		if(health <= 0) DungeonCrawler.gameOver();
+		if(health <= 0) DungeonCrawler.gameOver(false);
 	}
 	
 	@Override

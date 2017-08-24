@@ -17,6 +17,7 @@ public class InputHandler {
 		return scan.nextLine();
 	}
 
+	//TODO: Tidy this up.
 	private static String helpString = "Unknown command, type '?' for help.";
 	public static void getPlayerAction() {
 		String s = scan.nextLine().trim().toLowerCase();
@@ -30,6 +31,11 @@ public class InputHandler {
 			case "?":
 				PrintHandler.printHelp();
 				return;
+			
+			case "stats":
+				PrintHandler.printStats();
+				return;
+			
 			case "mv":
 				if(s.split(" ").length > 0){
 					char[] s2 = s.split(" ")[1].toCharArray();
@@ -48,6 +54,29 @@ public class InputHandler {
 					getPlayerAction();
 				}
 				return;
+			
+			case "i":
+				if(s.split(" ").length > 0){
+					char[] s2 = s.split(" ")[1].toCharArray();
+					Floor f = DungeonCrawler.getFloor();
+					Point p = PositionHandler.clone(DungeonCrawler.player.getPosition());
+					
+					switch(s2[0]){
+					case 'u': p.translate(0, -1); break;
+					case 'd': p.translate(0, 1); break;
+					case 'r': p.translate(1, 0); break;
+					case 'l': p.translate(-1, 0); break;
+					}
+					Entity e = f.getEntityAt(p);
+					if(e != null) e.onInteract(DungeonCrawler.player);
+					else PrintHandler.println("There is nothing there... {" + p.toString() + "}");
+				}
+				else{
+					PrintHandler.println(helpString);
+					getPlayerAction();
+				}
+				return;
+				
 			case "matk":
 				if(s.split(" ").length > 0){
 					char[] s2 = s.split(" ")[1].toCharArray();
@@ -69,6 +98,7 @@ public class InputHandler {
 					getPlayerAction();
 				}
 				return;
+			
 			}
 		}
 		catch(Exception e){
@@ -78,12 +108,26 @@ public class InputHandler {
 		}
 	}
 	
+	public static boolean getPlayerConfirmation(String st){
+		PrintHandler.print(st);
+		String s = scan.next().trim().toLowerCase();
+		switch(s){
+		case "y":
+		case "yes":
+		case "true":
+		case "ye":
+			return true;
+		}
+		return false;
+	}
+	
 	public static void initList(){
-		commandDesc.put("", "Move in l/r/d/u directions - allows for multiple moves in 1 turn, eg1: 'mv l', eg2: 'mv rrurd'");
-		commandDesc.put("mv", "See above");
+		commandDesc.put("stats", "Print stats for this run");
+		commandDesc.put("mv", "Move in l/r/d/u directions - allows for multiple moves in 1 turn, eg1: 'mv l', eg2: 'mv rrurd'");
+		commandDesc.put("i", "Interact in l/r/d/u direction.");
 		commandDesc.put("matk", "Melee Attack in l/r/d/u direction.");
-		commandDesc.put("ratk", "Ranged attack in l/r/d/u direction.");
-		commandDesc.put("satk", "Spell Attack in l/r/d/u direction.");
+	//	commandDesc.put("ratk", "Ranged attack in l/r/d/u direction.");
+	//	commandDesc.put("satk", "Spell Attack in l/r/d/u direction.");
 		commandDesc.put("?", "Show this help menu.");
 	}
 	

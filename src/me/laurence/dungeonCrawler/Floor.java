@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.ai.IEntityAI;
+import me.laurence.dungeonCrawler.entities.stationary.EntityStairs;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
+import me.laurence.dungeonCrawler.handlers.PositionHandler;
 import me.laurence.dungeonCrawler.handlers.PrintHandler;
 
 public class Floor {
@@ -28,16 +30,19 @@ public class Floor {
 				(int)(25 + 5*(floor-difficulty) + (DungeonCrawler.rand.nextInt(floor+1) - (floor+1)/2)),
 				(int)(10 + 3*(floor-difficulty) + (DungeonCrawler.rand.nextInt(floor+1) - (floor+1)/2)));
 		
-		//for(int i = 0; i < Math.ceil(floor * difficulty) + livingVariance; i++){
-			
-		//}
-		
 		for(int i = 0; i < dimensions.x; i++){
 			for(int j = 0; j < dimensions.y; j++){
 				if(i == 0 || j == dimensions.y-1 || j == 0 || i == dimensions.x-1) 
 					entities.add(new EntityWall(i,j));
 			}
 		}
+		
+		entities.add(new EntityStairs().setFloorMove(-1).setPosition(PositionHandler.clone(DungeonCrawler.player.getPosition())));
+		entities.add(new EntityStairs().setFloorMove(1).setPosition(getRandomPoint(true)));
+		
+		//for(int i = 0; i < Math.ceil(floor * difficulty) + livingVariance; i++){
+			
+		//}
 		
 	}
 	
@@ -60,6 +65,20 @@ public class Floor {
 			if(e.getPosition().equals(position)) return e;
 		}
 		return null;
+	}
+	
+	public Point getRandomPoint(boolean empty){
+		int x,y;
+		Point p;
+		
+		do{
+			x = DungeonCrawler.rand.nextInt(dimensions.x);
+			y = DungeonCrawler.rand.nextInt(dimensions.y);
+			p = new Point(x, y);
+		}while(getEntityAt(p) != null);
+		
+		System.err.println(p.toString());
+		return p;
 	}
 	
 	

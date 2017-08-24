@@ -1,6 +1,7 @@
 package me.laurence.dungeonCrawler.handlers;
 
 import me.laurence.dungeonCrawler.Floor;
+import me.laurence.dungeonCrawler.Stats;
 import me.laurence.dungeonCrawler.entities.Entity;
 
 public class PrintHandler {
@@ -30,7 +31,15 @@ public class PrintHandler {
 	}
 
 	public static void printHelp() {
-		// TODO Auto-generated method stub
+		for(String s : InputHandler.commandDesc.keySet()){
+			println(s + "\t:\t" + InputHandler.commandDesc.get(s));
+		}
+	}
+	
+	public static void printStats(){
+		println("Difficulty\t:\t" + Stats.Dungeon.difficulty);
+		println("Current Floor\t:\t" + Stats.Dungeon.floor);
+		println("Lowest Floor\t:\t" + Stats.Dungeon.lowestFloor);
 	}
 	
 }

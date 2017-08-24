@@ -40,7 +40,7 @@ public class DungeonCrawler {
 		}
 	}
 	
-	public static void gameOver(){
+	public static void gameOver(boolean survived){
 		
 	}
 	
@@ -73,6 +73,8 @@ public class DungeonCrawler {
 		floors.get(Stats.Dungeon.floor).entities.add(player);
 		
 		floorUpdateSkip = true;
+		
+		if(Stats.Dungeon.floor > Stats.Dungeon.lowestFloor) Stats.Dungeon.lowestFloor = Stats.Dungeon.floor;
 	}
 	
 	public static Floor getFloor(){
