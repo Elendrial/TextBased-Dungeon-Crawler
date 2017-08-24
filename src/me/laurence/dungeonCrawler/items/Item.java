@@ -5,7 +5,6 @@ import me.laurence.dungeonCrawler.entities.Entity;
 abstract public class Item extends Entity{
 
 	protected boolean destroyable;
-	protected EquipType equipType;
 	
 	public Item(){
 		this.charCode = 'i';
@@ -39,15 +38,6 @@ abstract public class Item extends Entity{
 
 	public Item setDestroyable(boolean destroyable) {
 		this.destroyable = destroyable;
-		return this;
-	}
-
-	public EquipType getEquipType() {
-		return equipType;
-	}
-
-	public Item setEquipType(EquipType equipType) {
-		this.equipType = equipType;
 		return this;
 	}
 

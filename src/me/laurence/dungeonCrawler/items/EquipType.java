@@ -12,7 +12,8 @@ public enum EquipType {
 	RIGHTHOLD,
 	// Misc
 	NECK,
-	FINGER,
+	FINGER1,   // For the current Equip system, there is a definitive difference between fingers. I might be able to work around this somewhere else so it's not an issue.
+	FINGER2,
 	QUIVER,
 	NONE
 }

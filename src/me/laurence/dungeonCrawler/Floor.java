@@ -3,8 +3,8 @@ package me.laurence.dungeonCrawler;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import me.laurence.dungeonCrawler.ai.IEntityAI;
 import me.laurence.dungeonCrawler.entities.Entity;
+import me.laurence.dungeonCrawler.entities.living.EntityLiving;
 import me.laurence.dungeonCrawler.entities.stationary.EntityStairs;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
 import me.laurence.dungeonCrawler.handlers.PositionHandler;
@@ -54,7 +54,7 @@ public class Floor {
 		}
 		
 		for(Entity e : entities){
-			if(e instanceof IEntityAI) ((IEntityAI) e).update();
+			if(e instanceof EntityLiving) ((EntityLiving) e).getAi().update();
 		}
 		
 		PrintHandler.printFloor(this);

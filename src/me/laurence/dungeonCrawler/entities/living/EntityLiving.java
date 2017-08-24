@@ -3,19 +3,21 @@ package me.laurence.dungeonCrawler.entities.living;
 import java.awt.Point;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
+import me.laurence.dungeonCrawler.ai.AIEmpty;
 import me.laurence.dungeonCrawler.ai.IEntityAI;
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.handlers.PrintHandler;
+import me.laurence.dungeonCrawler.inventory.InventoryEquips;
+import me.laurence.dungeonCrawler.items.armour.ItemEquippable;
 
 abstract public class EntityLiving extends Entity{
 	protected int maxHealth=1, health=1;
 	protected int moveRange=1;
 	protected int attackRange=1;
 	protected int def=0, atk=0, satk=0, sdef=0;
-	protected IEntityAI ai;
+	protected IEntityAI ai = new AIEmpty();
+	protected InventoryEquips inventory = new InventoryEquips();
 	// TODO: Statuses
-	
-	
 	
 	public void attack(Point position){
 		DungeonCrawler.getFloor().getEntityAt(position).onHit(this);
@@ -34,6 +36,10 @@ abstract public class EntityLiving extends Entity{
 	public void onDestroy(Entity e){};
 	public void onInteract(Entity e) {}
 	public void onWalkOn(Entity e) {}
+	
+	public void equip(ItemEquippable i){
+		
+	}
 	
 	public int getMaxHealth() {
 		return maxHealth;
@@ -113,6 +119,15 @@ abstract public class EntityLiving extends Entity{
 
 	public EntityLiving setAi(IEntityAI ai) {
 		this.ai = ai;
+		return this;
+	}
+
+	public InventoryEquips getInventory() {
+		return inventory;
+	}
+
+	public EntityLiving setInventory(InventoryEquips inventory) {
+		this.inventory = inventory;
 		return this;
 	}
 
