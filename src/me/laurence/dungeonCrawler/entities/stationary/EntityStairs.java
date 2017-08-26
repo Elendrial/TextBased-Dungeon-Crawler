@@ -1,10 +1,10 @@
 package me.laurence.dungeonCrawler.entities.stationary;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
+import me.laurence.dungeonCrawler.GameData;
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
-import me.laurence.dungeonCrawler.general.InputHandler;
-import me.laurence.dungeonCrawler.general.Stats;
+import me.laurence.dungeonCrawler.handlers.InputHandler;
 
 public class EntityStairs extends EntityStatic{
 	protected int floorMove; // -ve is up x floors, +ve is down x floors
@@ -32,7 +32,7 @@ public class EntityStairs extends EntityStatic{
 	@Override
 	public void onInteract(Entity e){
 		if(e instanceof EntityPlayer){
-			if(Stats.Dungeon.floor + floorMove < 0){
+			if(GameData.Dungeon.floor + floorMove < 0){
 				if(InputHandler.getPlayerConfirmation("If you use this, you will leave the dungeon.")){
 					DungeonCrawler.gameOver(true);
 				}

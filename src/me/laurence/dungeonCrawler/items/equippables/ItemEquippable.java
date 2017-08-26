@@ -1,4 +1,4 @@
-package me.laurence.dungeonCrawler.items.armour;
+package me.laurence.dungeonCrawler.items.equippables;
 
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityLiving;
@@ -9,9 +9,13 @@ public class ItemEquippable extends Item{
 
 	public EquipType armourSlot;
 	
+	
+	
 	@Override
 	public void onUse(Entity e) {
-		if(e instanceof EntityLiving) ((EntityLiving) e).equip(this);
+		if(e instanceof EntityLiving) ((EntityLiving) e).equip(this, ((EntityLiving) e).getInventory().containsItem(this));
 	}
+	
+	
 	
 }

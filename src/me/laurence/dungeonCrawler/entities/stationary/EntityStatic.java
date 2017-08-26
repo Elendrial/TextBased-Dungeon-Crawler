@@ -2,7 +2,7 @@ package me.laurence.dungeonCrawler.entities.stationary;
 
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
-import me.laurence.dungeonCrawler.general.PrintHandler;
+import me.laurence.dungeonCrawler.handlers.PrintHandler;
 
 abstract public class EntityStatic extends Entity{
 

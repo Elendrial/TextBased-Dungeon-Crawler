@@ -3,8 +3,8 @@ package me.laurence.dungeonCrawler.entities;
 import java.awt.Point;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
-import me.laurence.dungeonCrawler.general.PrintHandler;
-import me.laurence.dungeonCrawler.general.Stats;
+import me.laurence.dungeonCrawler.GameData;
+import me.laurence.dungeonCrawler.handlers.PrintHandler;
 
 public abstract class Entity{
 	protected char charCode = ' ';
@@ -38,7 +38,7 @@ public abstract class Entity{
 	
 	public void moveBy(Point p){
 		Point toMoveTo = new Point(p.x + position.x, p.y + position.y);
-		Entity e = DungeonCrawler.floors.get(Stats.Dungeon.floor).getEntityAt(toMoveTo);
+		Entity e = DungeonCrawler.floors.get(GameData.Dungeon.floor).getEntityAt(toMoveTo);
 		if(e == null) position.setLocation(toMoveTo);
 		else if(e.canPassThrough()) position.setLocation(toMoveTo);
 		

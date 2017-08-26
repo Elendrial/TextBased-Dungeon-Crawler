@@ -1,4 +1,4 @@
-package me.laurence.dungeonCrawler.general;
+package me.laurence.dungeonCrawler.handlers;
 
 import java.awt.Point;
 import java.util.HashMap;
@@ -7,6 +7,7 @@ import java.util.Scanner;
 import me.laurence.dungeonCrawler.DungeonCrawler;
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
+import me.laurence.dungeonCrawler.general.Floor;
 
 public class InputHandler {
 	private static Scanner scan = new Scanner(System.in);

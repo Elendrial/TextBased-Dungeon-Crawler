@@ -12,14 +12,14 @@ public class EntityPlayer extends EntityLiving{
 	public EntityPlayer(){
 		this.charCode = 'P';
 		this.name = "player";
-		this.moveRange = 2;
-		this.atk = 1;
-		this.def = 0;
-		this.satk = 1;
-		this.sdef = 0;
+		stats.moveRange = 2;
+		stats.atk = 1;
+		stats.def = 0;
+		stats.satk = 1;
+		stats.sdef = 0;
 		
 		this.canPassThrough = true;
-		this.health = 10;
+		stats.health = 10;
 		this.position = new Point(10, 5);
 		this.inventory = new PlayerInventory();
 	}
@@ -27,7 +27,7 @@ public class EntityPlayer extends EntityLiving{
 	@Override
 	public void onHit(Entity e){
 		super.onHit(e);
-		if(health <= 0) DungeonCrawler.gameOver(false);
+		if(stats.health <= 0) DungeonCrawler.gameOver(false);
 	}
 	
 	@Override

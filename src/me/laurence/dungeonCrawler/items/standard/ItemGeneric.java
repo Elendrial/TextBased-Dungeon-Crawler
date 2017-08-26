@@ -1,7 +1,7 @@
 package me.laurence.dungeonCrawler.items.standard;
 
 import me.laurence.dungeonCrawler.entities.Entity;
-import me.laurence.dungeonCrawler.general.PrintHandler;
+import me.laurence.dungeonCrawler.handlers.PrintHandler;
 import me.laurence.dungeonCrawler.items.Item;
 
 public class ItemGeneric extends Item{

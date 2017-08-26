@@ -1,6 +1,9 @@
-package me.laurence.dungeonCrawler.general;
+package me.laurence.dungeonCrawler.handlers;
 
+import me.laurence.dungeonCrawler.GameData;
+import me.laurence.dungeonCrawler.GameData.Dungeon;
 import me.laurence.dungeonCrawler.entities.Entity;
+import me.laurence.dungeonCrawler.general.Floor;
 
 public class PrintHandler {
 	
@@ -35,9 +38,9 @@ public class PrintHandler {
 	}
 	
 	public static void printStats(){
-		println("Difficulty\t:\t" + Stats.Dungeon.difficulty);
-		println("Current Floor\t:\t" + Stats.Dungeon.floor);
-		println("Lowest Floor\t:\t" + Stats.Dungeon.lowestFloor);
+		println("Difficulty\t:\t" + GameData.Dungeon.difficulty);
+		println("Current Floor\t:\t" + GameData.Dungeon.floor);
+		println("Lowest Floor\t:\t" + GameData.Dungeon.lowestFloor);
 	}
 	
 }

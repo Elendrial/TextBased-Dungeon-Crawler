@@ -1,6 +1,6 @@
-package me.laurence.dungeonCrawler.general;
+package me.laurence.dungeonCrawler;
 
-public class Stats {
+public class GameData {
 	public static class Dungeon{
 		public static float difficulty; // Recommend : 0.6f for easy, 1f for normal, 1.5f for hard.
 		public static int floor;

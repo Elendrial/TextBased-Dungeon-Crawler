@@ -53,16 +53,18 @@ public abstract class Inventory {
 		return maxSize;
 	}
 
-	public void setMaxSize(int maxSize) {
+	public Inventory setMaxSize(int maxSize) {
 		this.maxSize = maxSize;
+		return this;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public Inventory setName(String name) {
 		this.name = name;
+		return this;
 	}
 	
 	

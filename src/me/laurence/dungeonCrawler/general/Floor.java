@@ -8,6 +8,7 @@ import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityLiving;
 import me.laurence.dungeonCrawler.entities.stationary.EntityStairs;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
+import me.laurence.dungeonCrawler.handlers.PrintHandler;
 
 public class Floor {
 	

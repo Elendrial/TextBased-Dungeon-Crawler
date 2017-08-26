@@ -6,18 +6,17 @@ import me.laurence.dungeonCrawler.DungeonCrawler;
 import me.laurence.dungeonCrawler.ai.AIEmpty;
 import me.laurence.dungeonCrawler.ai.IEntityAI;
 import me.laurence.dungeonCrawler.entities.Entity;
-import me.laurence.dungeonCrawler.general.PrintHandler;
+import me.laurence.dungeonCrawler.general.AbilityStats;
+import me.laurence.dungeonCrawler.handlers.PrintHandler;
 import me.laurence.dungeonCrawler.inventory.InventoryEquips;
-import me.laurence.dungeonCrawler.items.armour.ItemEquippable;
+import me.laurence.dungeonCrawler.items.equippables.ItemEquippable;
 
 abstract public class EntityLiving extends Entity{
-	protected int maxHealth=1, health=1;
-	protected int moveRange=1;
-	protected int attackRange=1;
-	protected int def=0, atk=0, satk=0, sdef=0;
+	protected AbilityStats stats;
 	protected IEntityAI ai = new AIEmpty();
-	protected InventoryEquips inventory = new InventoryEquips();
+	protected InventoryEquips inventory = (InventoryEquips) new InventoryEquips().setMaxSize(5);
 	// TODO: Statuses
+	// TODO: Change how health is stored.
 	
 	public void attack(Point position){
 		DungeonCrawler.getFloor().getEntityAt(position).onHit(this);
@@ -26,10 +25,10 @@ abstract public class EntityLiving extends Entity{
 	@Override
 	public void onHit(Entity e) {
 		if(e instanceof EntityLiving){
-			this.health -= (((EntityLiving) e).getAtk() - this.getDef());
+			stats.health -= (((EntityLiving) e).getAtk() - this.getDef());
 			PrintHandler.println(this.getName() + " was hit, health now: " + this.getHealth());
 			
-			if(this.health <= 0) destroy(e);
+			if(stats.health <= 0) destroy(e);
 		}
 	}
 	
@@ -37,79 +36,81 @@ abstract public class EntityLiving extends Entity{
 	public void onInteract(Entity e) {}
 	public void onWalkOn(Entity e) {}
 	
-	public void equip(ItemEquippable i){
-		
+	public void equip(ItemEquippable i, boolean fromInventory){
+		if(fromInventory) inventory.removeItem(i);
+		ItemEquippable i2 = inventory.equipItem(i);
+		if(i2 != null) inventory.addItem(i2);
 	}
 	
 	public int getMaxHealth() {
-		return maxHealth;
+		return stats.maxHealth;
 	}
 
 	public EntityLiving setMaxHealth(int maxHealth) {
-		this.maxHealth = maxHealth;
+		stats.maxHealth = maxHealth;
 		return this;
 	}
 
 	public int getHealth() {
-		return health;
+		return stats.health;
 	}
 
 	public EntityLiving setHealth(int health) {
-		this.health = health > maxHealth ? maxHealth : health;
+		stats.health = health > stats.maxHealth ? stats.maxHealth : health;
 		return this;
 	}
 
 	public int getMoveRange() {
-		return moveRange;
+		return stats.moveRange;
 	}
 
 	public EntityLiving setMoveRange(int moveRange) {
-		this.moveRange = moveRange;
+		stats.moveRange = moveRange;
 		return this;
 	}
 
 	public int getAttackRange() {
-		return attackRange;
+		return stats.attackRange;
 	}
 
 	public EntityLiving setAttackRange(int attackRange) {
-		this.attackRange = attackRange;
+		stats.attackRange = attackRange;
 		return this;
 	}
 
 	public int getDef() {
-		return def;
+		return stats.def;
 	}
 
 	public EntityLiving setDef(int def) {
-		this.def = def;
+		stats.def = def;
 		return this;
 	}
 
 	public int getAtk() {
-		return atk;
+		return stats.atk;
 	}
 
 	public EntityLiving setAtk(int atk) {
-		this.atk = atk;
+		stats.atk = atk;
 		return this;
 	}
 
 	public int getSatk() {
-		return satk;
+		return stats.satk;
 	}
 
 	public EntityLiving setSatk(int satk) {
-		this.satk = satk;
+		stats.satk = satk;
 		return this;
 	}
 
 	public int getSdef() {
-		return sdef;
+		return stats.sdef;
 	}
 
 	public EntityLiving setSdef(int sdef) {
-		this.sdef = sdef;
+		stats.sdef = sdef;
 		return this;
 	}
 
@@ -136,14 +137,14 @@ abstract public class EntityLiving extends Entity{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((ai == null) ? 0 : ai.hashCode());
-		result = prime * result + atk;
-		result = prime * result + attackRange;
-		result = prime * result + def;
-		result = prime * result + health;
-		result = prime * result + maxHealth;
-		result = prime * result + moveRange;
-		result = prime * result + satk;
-		result = prime * result + sdef;
+		result = prime * result + stats.atk;
+		result = prime * result + stats.attackRange;
+		result = prime * result + stats.def;
+		result = prime * result + stats.health;
+		result = prime * result + stats.maxHealth;
+		result = prime * result + stats.moveRange;
+		result = prime * result + stats.satk;
+		result = prime * result + stats.sdef;
 		return result;
 	}
 
@@ -161,21 +162,21 @@ abstract public class EntityLiving extends Entity{
 				return false;
 		} else if (!ai.equals(other.ai))
 			return false;
-		if (atk != other.atk)
+		if (stats.atk != other.stats.atk)
 			return false;
-		if (attackRange != other.attackRange)
+		if (stats.attackRange != other.stats.attackRange)
 			return false;
-		if (def != other.def)
+		if (stats.def != other.stats.def)
 			return false;
-		if (health != other.health)
+		if (stats.health != other.stats.health)
 			return false;
-		if (maxHealth != other.maxHealth)
+		if (stats.maxHealth != other.stats.maxHealth)
 			return false;
-		if (moveRange != other.moveRange)
+		if (stats.moveRange != other.stats.moveRange)
 			return false;
-		if (satk != other.satk)
+		if (stats.satk != other.stats.satk)
 			return false;
-		if (sdef != other.sdef)
+		if (stats.sdef != other.stats.sdef)
 			return false;
 		return true;
 	}

@@ -1,7 +1,7 @@
 package me.laurence.dungeonCrawler.inventory;
 
 import me.laurence.dungeonCrawler.items.EquipType;
-import me.laurence.dungeonCrawler.items.armour.ItemEquippable;
+import me.laurence.dungeonCrawler.items.equippables.ItemEquippable;
 
 public class InventoryEquips extends Inventory {
 

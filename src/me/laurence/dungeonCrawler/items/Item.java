@@ -1,6 +1,7 @@
 package me.laurence.dungeonCrawler.items;
 
 import me.laurence.dungeonCrawler.entities.Entity;
+import me.laurence.dungeonCrawler.entities.living.EntityLiving;
 
 abstract public class Item extends Entity{
 
@@ -21,7 +22,7 @@ abstract public class Item extends Entity{
 
 	@Override
 	public void onInteract(Entity e) {
-		// pickup
+		if(e instanceof EntityLiving) ((EntityLiving) e).getInventory().addItem(this);
 	}
 
 	@Override
