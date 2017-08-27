@@ -19,7 +19,7 @@ public class EntityPlayer extends EntityLiving{
 		stats.sdef = 0;
 		
 		this.canPassThrough = true;
-		stats.health = 10;
+		this.health = 10;
 		this.position = new Point(10, 5);
 		this.inventory = new PlayerInventory();
 	}
@@ -27,7 +27,7 @@ public class EntityPlayer extends EntityLiving{
 	@Override
 	public void onHit(Entity e){
 		super.onHit(e);
-		if(stats.health <= 0) DungeonCrawler.gameOver(false);
+		if(this.health <= 0) DungeonCrawler.gameOver(false);
 	}
 	
 	@Override

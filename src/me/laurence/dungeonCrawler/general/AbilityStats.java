@@ -2,7 +2,7 @@ package me.laurence.dungeonCrawler.general;
 
 public class AbilityStats { // Name is temporary.
 	
-	public int maxHealth, health;
+	public int maxHealth;
 	public int moveRange;
 	public int attackRange;
 	public int def, atk, satk, sdef;
@@ -12,12 +12,6 @@ public class AbilityStats { // Name is temporary.
 	}
 	public void setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
-	}
-	public int getHealth() {
-		return health;
-	}
-	public void setHealth(int health) {
-		this.health = health;
 	}
 	public int getMoveRange() {
 		return moveRange;

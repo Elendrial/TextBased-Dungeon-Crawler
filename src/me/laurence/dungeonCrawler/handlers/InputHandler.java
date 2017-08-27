@@ -40,7 +40,7 @@ public class InputHandler {
 				if(s.split(" ").length > 0){
 					char[] s2 = s.split(" ")[1].toCharArray();
 					EntityPlayer p = DungeonCrawler.player;
-					for(int i = 0; i < s2.length && i < p.getMoveRange(); i++){
+					for(int i = 0; i < s2.length && i < p.getBaseMoveRange(); i++){
 						switch(s2[i]){
 						case 'u': p.moveBy(0, -1); break;
 						case 'd': p.moveBy(0, 1); break;

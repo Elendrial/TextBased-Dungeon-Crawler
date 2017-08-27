@@ -15,8 +15,8 @@ abstract public class EntityLiving extends Entity{
 	protected AbilityStats stats;
 	protected IEntityAI ai = new AIEmpty();
 	protected InventoryEquips inventory = (InventoryEquips) new InventoryEquips().setMaxSize(5);
+	protected int health;
 	// TODO: Statuses
-	// TODO: Change how health is stored.
 	
 	public void attack(Point position){
 		DungeonCrawler.getFloor().getEntityAt(position).onHit(this);
@@ -25,10 +25,10 @@ abstract public class EntityLiving extends Entity{
 	@Override
 	public void onHit(Entity e) {
 		if(e instanceof EntityLiving){
-			stats.health -= (((EntityLiving) e).getAtk() - this.getDef());
+			this.health -= (((EntityLiving) e).getEffectiveAtk() - this.getEffectiveDef());
 			PrintHandler.println(this.getName() + " was hit, health now: " + this.getHealth());
 			
-			if(stats.health <= 0) destroy(e);
+			if(this.health <= 0) destroy(e);
 		}
 	}
 	
@@ -42,78 +42,106 @@ abstract public class EntityLiving extends Entity{
 		if(i2 != null) inventory.addItem(i2);
 	}
 	
-	public int getMaxHealth() {
+	public int getBaseMaxHealth() {
 		return stats.maxHealth;
 	}
 
-	public EntityLiving setMaxHealth(int maxHealth) {
+	public int getEffectiveMaxHealth(){
+		return this.getBaseMaxHealth() + inventory.getMaxHealth();
+	}
+	
+	public EntityLiving setBaseMaxHealth(int maxHealth) {
 		stats.maxHealth = maxHealth;
 		return this;
 	}
 
 	public int getHealth() {
-		return stats.health;
+		return this.health;
 	}
 
 	public EntityLiving setHealth(int health) {
-		stats.health = health > stats.maxHealth ? stats.maxHealth : health;
+		this.health = health > stats.maxHealth ? stats.maxHealth : health;
 		return this;
 	}
 
-	public int getMoveRange() {
+	public int getBaseMoveRange() {
 		return stats.moveRange;
 	}
 
-	public EntityLiving setMoveRange(int moveRange) {
+	public int getEffectiveMoveRange(){
+		return this.getBaseMoveRange() + inventory.getMoveRange();
+	}
+	
+	public EntityLiving setBaseMoveRange(int moveRange) {
 		stats.moveRange = moveRange;
 		return this;
 	}
 
-	public int getAttackRange() {
+	public int getBaseAttackRange() {
 		return stats.attackRange;
 	}
 
-	public EntityLiving setAttackRange(int attackRange) {
+	public int getEffectiveAttackRange(){
+		return this.getBaseAttackRange() + inventory.getAttackRange();
+	}
+	
+	public EntityLiving setBaseAttackRange(int attackRange) {
 		stats.attackRange = attackRange;
 		return this;
 	}
 
-	public int getDef() {
+	public int getBaseDef() {
 		return stats.def;
 	}
 
-	public EntityLiving setDef(int def) {
+	public int getEffectiveDef(){
+		return this.getBaseDef() + inventory.getDef();
+	}
+	
+	public EntityLiving setBaseDef(int def) {
 		stats.def = def;
 		return this;
 	}
 
-	public int getAtk() {
+	public int getBaseAtk() {
 		return stats.atk;
 	}
 
-	public EntityLiving setAtk(int atk) {
+	public int getEffectiveAtk(){
+		return this.getBaseAtk() + inventory.getAtk();
+	}
+	
+	public EntityLiving setBaseAtk(int atk) {
 		stats.atk = atk;
 		return this;
 	}
 
-	public int getSatk() {
+	public int getBaseSatk() {
 		return stats.satk;
 	}
 
-	public EntityLiving setSatk(int satk) {
+	public int getEffectiveSatk(){
+		return this.getBaseSatk() + inventory.getSatk();
+	}
+	
+	public EntityLiving setBaseSatk(int satk) {
 		stats.satk = satk;
 		return this;
 	}
 
-	public int getSdef() {
+	public int getBaseSdef() {
 		return stats.sdef;
 	}
 
-	public EntityLiving setSdef(int sdef) {
+	public int getEffectiveSdef(){
+		return this.getBaseSdef() + inventory.getSdef();
+	}
+	
+	public EntityLiving setBaseSdef(int sdef) {
 		stats.sdef = sdef;
 		return this;
 	}
-
+	
 	public IEntityAI getAi() {
 		return ai;
 	}
@@ -140,7 +168,7 @@ abstract public class EntityLiving extends Entity{
 		result = prime * result + stats.atk;
 		result = prime * result + stats.attackRange;
 		result = prime * result + stats.def;
-		result = prime * result + stats.health;
+		result = prime * result + this.health;
 		result = prime * result + stats.maxHealth;
 		result = prime * result + stats.moveRange;
 		result = prime * result + stats.satk;
@@ -168,7 +196,7 @@ abstract public class EntityLiving extends Entity{
 			return false;
 		if (stats.def != other.stats.def)
 			return false;
-		if (stats.health != other.stats.health)
+		if (this.health != other.health)
 			return false;
 		if (stats.maxHealth != other.stats.maxHealth)
 			return false;

@@ -1,7 +1,6 @@
 package me.laurence.dungeonCrawler.handlers;
 
 import me.laurence.dungeonCrawler.GameData;
-import me.laurence.dungeonCrawler.GameData.Dungeon;
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.general.Floor;
 

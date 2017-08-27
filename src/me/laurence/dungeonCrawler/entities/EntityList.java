@@ -29,9 +29,9 @@ public class EntityList {
 	public static HashMap<String, EntityStatic> staticEntities = new HashMap<String, EntityStatic>(); 
 	
 	public static void initList(){
-		EntityGenericHostile warriorSkeleton = (EntityGenericHostile) new EntityGenericHostile().setAtk(3).setHealth(2).setAttackRange(1).setDef(2).setSatk(0).setSdef(5).setCanPassThrough(false).setCharCode('s').setName("warrior skeleton");
-		EntityGenericHostile archerSkeleton = (EntityGenericHostile) new EntityGenericHostile().setAtk(2).setHealth(2).setAttackRange(3).setDef(0).setSatk(0).setSdef(2).setCanPassThrough(false).setCharCode('s').setName("archer skeleton");
-		EntityGenericHostile zombie = (EntityGenericHostile) new EntityGenericHostile().setAtk(3).setHealth(2).setAttackRange(1).setDef(1).setSatk(0).setSdef(2).setCanPassThrough(false).setCharCode('z').setName("zombie");
+		EntityGenericHostile warriorSkeleton = (EntityGenericHostile) new EntityGenericHostile().setBaseAtk(3).setHealth(2).setBaseAttackRange(1).setBaseDef(2).setBaseSatk(0).setBaseSdef(5).setCanPassThrough(false).setCharCode('s').setName("warrior skeleton");
+		EntityGenericHostile archerSkeleton = (EntityGenericHostile) new EntityGenericHostile().setBaseAtk(2).setHealth(2).setBaseAttackRange(3).setBaseDef(0).setBaseSatk(0).setBaseSdef(2).setCanPassThrough(false).setCharCode('s').setName("archer skeleton");
+		EntityGenericHostile zombie = (EntityGenericHostile) new EntityGenericHostile().setBaseAtk(3).setHealth(2).setBaseAttackRange(1).setBaseDef(1).setBaseSatk(0).setBaseSdef(2).setCanPassThrough(false).setCharCode('z').setName("zombie");
 		
 		
 		addToEntityList(new EntityPlayer());

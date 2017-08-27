@@ -11,7 +11,7 @@ public class EntityBat extends EntityLiving{
 		stats.atk = 1;
 		this.canPassThrough = true;
 		this.charCode = 'b';
-		stats.health = 3;
+		this.health = 3;
 		stats.maxHealth = 3;
 		stats.moveRange = 2;
 	}
