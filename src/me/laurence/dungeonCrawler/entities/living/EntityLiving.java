@@ -12,11 +12,22 @@ import me.laurence.dungeonCrawler.inventory.InventoryEquips;
 import me.laurence.dungeonCrawler.items.equippables.ItemEquippable;
 
 abstract public class EntityLiving extends Entity{
-	protected AbilityStats stats;
+	protected AbilityStats stats = new AbilityStats();
 	protected IEntityAI ai = new AIEmpty();
 	protected InventoryEquips inventory = (InventoryEquips) new InventoryEquips().setMaxSize(5);
 	protected int health;
 	// TODO: Statuses
+	
+	public EntityLiving(){}
+	protected EntityLiving(EntityLiving e){
+		this.ai = e.ai;
+		this.stats = e.stats.clone();
+		this.canPassThrough = e.canPassThrough;
+		this.charCode = e.charCode;
+		this.health = e.health;
+		this.position = e.position;
+		this.inventory = e.inventory.clone();
+	}
 	
 	public void attack(Point position){
 		DungeonCrawler.getFloor().getEntityAt(position).onHit(this);
@@ -208,5 +219,7 @@ abstract public class EntityLiving extends Entity{
 			return false;
 		return true;
 	}
+	
+	abstract public EntityLiving clone();
 	
 }

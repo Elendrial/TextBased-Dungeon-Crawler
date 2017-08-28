@@ -11,7 +11,15 @@ public class ItemEquippable extends Item{
 	protected EquipType armourSlot;
 	protected AbilityStats stats;
 	
+	public ItemEquippable(){}
 	
+	protected ItemEquippable(ItemEquippable i) {
+		super(i);
+		this.armourSlot = i.armourSlot;
+		this.stats = i.stats.clone();
+	}
+
+
 	@Override
 	public void onUse(Entity e) {
 		if(e instanceof EntityLiving) ((EntityLiving) e).equip(this, ((EntityLiving) e).getInventory().containsItem(this));
@@ -38,7 +46,11 @@ public class ItemEquippable extends Item{
 		this.stats = stats;
 		return this;
 	}
-	
-	
+
+
+	@Override
+	public ItemEquippable clone() {
+		return new ItemEquippable(this);
+	}
 	
 }

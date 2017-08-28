@@ -1,5 +1,6 @@
 package me.laurence.dungeonCrawler;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -28,6 +29,9 @@ public class DungeonCrawler {
 		
 		floors.add(new Floor(GameData.Dungeon.difficulty, 0));
 		floors.get(0).entities.add(player);
+		
+		floors.get(0).entities.add(EntityList.livingEntities.get("skeleton").clone().setPosition(new Point(1,1)));
+		
 		PrintHandler.printFloor(floors.get(0));
 		
 		gameLoop();

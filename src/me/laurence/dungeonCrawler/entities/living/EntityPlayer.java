@@ -23,6 +23,10 @@ public class EntityPlayer extends EntityLiving{
 		this.position = new Point(10, 5);
 		this.inventory = new PlayerInventory();
 	}
+	
+	protected EntityPlayer(EntityPlayer e){
+		super(e);
+	}
 
 	@Override
 	public void onHit(Entity e){
@@ -33,6 +37,11 @@ public class EntityPlayer extends EntityLiving{
 	@Override
 	public float getSpawnChance() {
 		return 0;
+	}
+
+	@Override
+	public EntityPlayer clone() {
+		return new EntityPlayer(this);
 	}
 	
 }

@@ -17,10 +17,19 @@ public class EntityGenericHostile extends EntityLiving{
 		this.position = new Point(0,0);
 	}
 	
+	protected EntityGenericHostile(EntityGenericHostile e){
+		super(e);
+	}
+	
 	@Override
 	public float getSpawnChance() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public EntityGenericHostile clone() {
+		return new EntityGenericHostile(this);
 	}
 
 }

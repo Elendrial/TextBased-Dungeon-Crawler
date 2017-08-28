@@ -1,6 +1,7 @@
 package me.laurence.dungeonCrawler.inventory;
 
 import me.laurence.dungeonCrawler.items.EquipType;
+import me.laurence.dungeonCrawler.items.Item;
 import me.laurence.dungeonCrawler.items.equippables.ItemEquippable;
 
 public class InventoryEquips extends Inventory {
@@ -82,6 +83,20 @@ public class InventoryEquips extends Inventory {
 			sdef += i.getStats().sdef;
 		}
 		return sdef;
+	}
+	
+	public InventoryEquips clone(){
+		InventoryEquips e = new InventoryEquips();
+		
+		for(Item i : this.contents){
+			e.contents.add(i.clone());
+		}
+		
+		for(ItemEquippable i : this.equippedContents){
+			e.equippedContents[i.getArmourSlot().ordinal()] = i.clone();
+		}
+		
+		return e;
 	}
 	
 }

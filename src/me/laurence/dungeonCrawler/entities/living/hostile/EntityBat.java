@@ -16,8 +16,17 @@ public class EntityBat extends EntityLiving{
 		stats.moveRange = 2;
 	}
 	
+	protected EntityBat(EntityBat e){
+		super(e);
+	}
+	
 	@Override
 	public float getSpawnChance() {
 		return 0;
+	}
+
+	@Override
+	public EntityBat clone() {
+		return new EntityBat(this);
 	}
 }

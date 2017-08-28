@@ -50,6 +50,16 @@ public class AbilityStats { // Name is temporary.
 		this.sdef = sdef;
 	}
 	
-	
+	public AbilityStats clone(){
+		AbilityStats s = new AbilityStats();
+		s.maxHealth = this.maxHealth;
+		s.moveRange = this.moveRange;
+		s.attackRange = this.attackRange;
+		s.def = this.def;
+		s.atk = this.atk;
+		s.satk = this.satk;
+		s.sdef = this.sdef;
+		return s;
+	}
 	
 }

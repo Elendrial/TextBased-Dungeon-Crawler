@@ -28,8 +28,10 @@ public class AIHostile implements IEntityAI{
 				if(Math.abs(xDif) > Math.abs(yDif)) e.moveBy(new Point((xDif / Math.abs(xDif)) ,0));
 				else e.moveBy(new Point((yDif / Math.abs(yDif)) ,0));
 			}
+			else{
+				DungeonCrawler.player.onHit(e);
+			}
 		}
-		
 	}
 
 }

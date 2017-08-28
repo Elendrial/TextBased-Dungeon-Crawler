@@ -12,6 +12,12 @@ public class ItemFood extends Item{
 		this.charCode = 'f';
 	}
 	
+	
+	protected ItemFood(ItemFood i) {
+		super(i);
+		this.healthGained = i.healthGained;
+	}
+	
 	protected int healthGained;
 	
 	@Override
@@ -29,5 +35,11 @@ public class ItemFood extends Item{
 	public void setHealthGained(int healthGained) {
 		this.healthGained = healthGained;
 	}
+	
+	@Override
+	public ItemFood clone() {
+		return new ItemFood(this);
+	}
+	
 	
 }

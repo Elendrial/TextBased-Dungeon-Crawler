@@ -12,6 +12,14 @@ abstract public class Item extends Entity{
 		this.canPassThrough = true;
 	}
 	
+	protected Item(Item i){
+		this.canPassThrough = i.canPassThrough;
+		this.charCode = i.charCode;
+		this.destroyable = i.destroyable;
+		this.name = i.name;
+		this.position = i.position;
+	}
+	
 	@Override
 	public float getSpawnChance() {return 0;}
 
@@ -42,6 +50,6 @@ abstract public class Item extends Entity{
 		return this;
 	}
 
-	
+	abstract public Item clone();
 	
 }
