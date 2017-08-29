@@ -8,6 +8,6 @@ public class GameData {
 	}
 	
 	public static class Global{
-		
+		public static boolean debug = true;
 	}
 }

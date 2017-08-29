@@ -20,6 +20,8 @@ public class EntityWall extends EntityStatic{
 		return 0;
 	}
 
-	
+	public EntityWall clone(){
+		return (EntityWall) new EntityWall().setPosition(new Point(this.position));
+	}
 	
 }

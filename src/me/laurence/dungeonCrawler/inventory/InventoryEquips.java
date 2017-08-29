@@ -1,5 +1,7 @@
 package me.laurence.dungeonCrawler.inventory;
 
+import java.util.Arrays;
+
 import me.laurence.dungeonCrawler.items.EquipType;
 import me.laurence.dungeonCrawler.items.Item;
 import me.laurence.dungeonCrawler.items.equippables.ItemEquippable;
@@ -93,10 +95,35 @@ public class InventoryEquips extends Inventory {
 		}
 		
 		for(ItemEquippable i : this.equippedContents){
-			e.equippedContents[i.getArmourSlot().ordinal()] = i.clone();
+			if(i!=null) e.equippedContents[i.getArmourSlot().ordinal()] = i.clone();
 		}
 		
+		e.maxSize = this.maxSize;
+		e.name = this.name;
+		
 		return e;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + Arrays.hashCode(equippedContents);
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		InventoryEquips other = (InventoryEquips) obj;
+		if (!Arrays.equals(equippedContents, other.equippedContents))
+			return false;
+		return true;
 	}
 	
 }

@@ -41,5 +41,9 @@ public class PrintHandler {
 		println("Current Floor\t:\t" + GameData.Dungeon.floor);
 		println("Lowest Floor\t:\t" + GameData.Dungeon.lowestFloor);
 	}
+
+	public static void printEntityInfo(Entity e) {
+		println(e.getCharCode() + ":" + e.getName() + "\t:\t(" + e.getPosition().x + ", " + e.getPosition().y + ")");
+	}
 	
 }

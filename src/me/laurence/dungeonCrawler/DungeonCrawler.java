@@ -30,7 +30,7 @@ public class DungeonCrawler {
 		floors.add(new Floor(GameData.Dungeon.difficulty, 0));
 		floors.get(0).entities.add(player);
 		
-		floors.get(0).entities.add(EntityList.livingEntities.get("skeleton").clone().setPosition(new Point(1,1)));
+		floors.get(0).entities.add(EntityList.livingEntities.get("zombie").clone().setPosition(new Point(1,1)));
 		
 		PrintHandler.printFloor(floors.get(0));
 		
@@ -57,7 +57,9 @@ public class DungeonCrawler {
 		case "easy": GameData.Dungeon.difficulty = 0.6f; break;
 		case "normal": GameData.Dungeon.difficulty = 1f; break;
 		case "hard": GameData.Dungeon.difficulty = 1.5f; break;
-		default: PrintHandler.println("\nInput not understood, setting difficulty to 'normal'.");
+		default: 
+			PrintHandler.println("\nInput not understood, setting difficulty to 'normal'.");
+			GameData.Dungeon.difficulty = 1f; break;
 		}
 		
 		PrintHandler.println("All enemy values will be multiplied to " + GameData.Dungeon.difficulty + " times their standard value for future floors.");

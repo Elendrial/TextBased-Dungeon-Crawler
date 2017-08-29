@@ -20,12 +20,10 @@ abstract public class EntityLiving extends Entity{
 	
 	public EntityLiving(){}
 	protected EntityLiving(EntityLiving e){
+		super(e);
 		this.ai = e.ai;
 		this.stats = e.stats.clone();
-		this.canPassThrough = e.canPassThrough;
-		this.charCode = e.charCode;
 		this.health = e.health;
-		this.position = e.position;
 		this.inventory = e.inventory.clone();
 	}
 	
@@ -170,28 +168,23 @@ abstract public class EntityLiving extends Entity{
 		this.inventory = inventory;
 		return this;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((ai == null) ? 0 : ai.hashCode());
-		result = prime * result + stats.atk;
-		result = prime * result + stats.attackRange;
-		result = prime * result + stats.def;
-		result = prime * result + this.health;
-		result = prime * result + stats.maxHealth;
-		result = prime * result + stats.moveRange;
-		result = prime * result + stats.satk;
-		result = prime * result + stats.sdef;
+		result = prime * result + health;
+		result = prime * result + ((inventory == null) ? 0 : inventory.hashCode());
+		result = prime * result + ((stats == null) ? 0 : stats.hashCode());
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
+		if (!super.equals(obj))
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
@@ -201,21 +194,17 @@ abstract public class EntityLiving extends Entity{
 				return false;
 		} else if (!ai.equals(other.ai))
 			return false;
-		if (stats.atk != other.stats.atk)
+		if (health != other.health)
 			return false;
-		if (stats.attackRange != other.stats.attackRange)
+		if (inventory == null) {
+			if (other.inventory != null)
+				return false;
+		} else if (!inventory.equals(other.inventory))
 			return false;
-		if (stats.def != other.stats.def)
-			return false;
-		if (this.health != other.health)
-			return false;
-		if (stats.maxHealth != other.stats.maxHealth)
-			return false;
-		if (stats.moveRange != other.stats.moveRange)
-			return false;
-		if (stats.satk != other.stats.satk)
-			return false;
-		if (stats.sdef != other.stats.sdef)
+		if (stats == null) {
+			if (other.stats != null)
+				return false;
+		} else if (!stats.equals(other.stats))
 			return false;
 		return true;
 	}

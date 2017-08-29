@@ -9,11 +9,18 @@ import me.laurence.dungeonCrawler.handlers.PrintHandler;
 public abstract class Entity{
 	protected char charCode = ' ';
 	protected String name = "";
-	protected Point position;
-	protected boolean canPassThrough;
+	protected Point position = new Point();
+	protected boolean canPassThrough = true;
 	
 	public Entity(){}
 	
+	public Entity(Entity e) {
+		this.canPassThrough = e.canPassThrough;
+		this.charCode = e.charCode;
+		this.name = e.name;
+		this.position = new Point(e.position);
+	}
+
 	/* e is entity which destroyed, not the entity to be destroyed */
 	public void destroy(Entity e){
 		try{
@@ -31,6 +38,8 @@ public abstract class Entity{
 	public abstract void onInteract(Entity e);
 	public abstract void onWalkOn(Entity e);
 	public abstract void onDestroy(Entity e);
+	
+	public abstract Entity clone();
 	
 	public String getName(){
 		return this.name;
@@ -84,6 +93,42 @@ public abstract class Entity{
 		this.name = name;
 		return this;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (canPassThrough ? 1231 : 1237);
+		result = prime * result + charCode;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Entity other = (Entity) obj;
+		if (canPassThrough != other.canPassThrough)
+			return false;
+		if (charCode != other.charCode)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (position == null) {
+			if (other.position != null)
+				return false;
+		} else if (!position.equals(other.position))
+			return false;
+		return true;
+	}
 	
 }

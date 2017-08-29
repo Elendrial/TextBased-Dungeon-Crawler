@@ -2,10 +2,10 @@ package me.laurence.dungeonCrawler.general;
 
 public class AbilityStats { // Name is temporary.
 	
-	public int maxHealth;
-	public int moveRange;
-	public int attackRange;
-	public int def, atk, satk, sdef;
+	public int maxHealth = 100;
+	public int moveRange = 1;
+	public int attackRange = 1;
+	public int def = 0, atk = 1, satk = 0, sdef = 0;
 	
 	public int getMaxHealth() {
 		return maxHealth;
@@ -60,6 +60,46 @@ public class AbilityStats { // Name is temporary.
 		s.satk = this.satk;
 		s.sdef = this.sdef;
 		return s;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + atk;
+		result = prime * result + attackRange;
+		result = prime * result + def;
+		result = prime * result + maxHealth;
+		result = prime * result + moveRange;
+		result = prime * result + satk;
+		result = prime * result + sdef;
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AbilityStats other = (AbilityStats) obj;
+		if (atk != other.atk)
+			return false;
+		if (attackRange != other.attackRange)
+			return false;
+		if (def != other.def)
+			return false;
+		if (maxHealth != other.maxHealth)
+			return false;
+		if (moveRange != other.moveRange)
+			return false;
+		if (satk != other.satk)
+			return false;
+		if (sdef != other.sdef)
+			return false;
+		return true;
 	}
 	
 }

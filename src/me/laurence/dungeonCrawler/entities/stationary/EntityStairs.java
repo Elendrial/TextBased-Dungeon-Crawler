@@ -15,6 +15,11 @@ public class EntityStairs extends EntityStatic{
 		this.canPassThrough = true;
 	}
 	
+	public EntityStairs(EntityStairs e){
+		super(e);
+		e.floorMove = this.floorMove;
+	}
+	
 	public int getFloorMove() {
 		return floorMove;
 	}
@@ -40,6 +45,11 @@ public class EntityStairs extends EntityStatic{
 			else
 				DungeonCrawler.changeFloor(floorMove);
 		}
+	}
+
+	@Override
+	public Entity clone() {
+		return new EntityStairs(this);
 	}
 	
 }

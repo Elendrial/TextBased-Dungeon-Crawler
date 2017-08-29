@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
+import me.laurence.dungeonCrawler.GameData;
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
+import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
 import me.laurence.dungeonCrawler.general.Floor;
 
 public class InputHandler {
@@ -99,6 +101,13 @@ public class InputHandler {
 				}
 				return;
 			
+				
+			case "#list":
+				for(Entity e : DungeonCrawler.getFloor().entities){
+					if(!(e instanceof EntityWall)) PrintHandler.printEntityInfo(e);
+				}
+				return;
+				
 			}
 		}
 		catch(Exception e){
@@ -129,6 +138,8 @@ public class InputHandler {
 	//	commandDesc.put("ratk", "Ranged attack in l/r/d/u direction.");
 	//	commandDesc.put("satk", "Spell Attack in l/r/d/u direction.");
 		commandDesc.put("?", "Show this help menu.");
+		
+		if(GameData.Global.debug) commandDesc.put("#list", "lists all entities & their positions");
 	}
 	
 }

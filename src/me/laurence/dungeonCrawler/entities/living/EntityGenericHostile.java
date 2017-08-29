@@ -22,10 +22,7 @@ public class EntityGenericHostile extends EntityLiving{
 	}
 	
 	@Override
-	public float getSpawnChance() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public float getSpawnChance() {return 0;}
 
 	@Override
 	public EntityGenericHostile clone() {

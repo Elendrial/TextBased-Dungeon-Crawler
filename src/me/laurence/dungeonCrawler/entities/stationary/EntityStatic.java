@@ -6,6 +6,9 @@ import me.laurence.dungeonCrawler.handlers.PrintHandler;
 
 abstract public class EntityStatic extends Entity{
 
+	public EntityStatic(){}
+	public EntityStatic(EntityStatic e) {super(e);}
+
 	@Override
 	public void onHit(Entity e) {
 		if(e instanceof EntityPlayer) PrintHandler.println("You hit the " + this.name.toLowerCase() + "... Nothing happened.");
