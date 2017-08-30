@@ -8,7 +8,7 @@ import me.laurence.dungeonCrawler.items.equippables.ItemEquippable;
 
 public class InventoryEquips extends Inventory {
 
-	public ItemEquippable[] equippedContents = new ItemEquippable[EquipType.values().length]; // Uses order from EquipType
+	protected ItemEquippable[] equippedContents = new ItemEquippable[EquipType.values().length]; // Uses order from EquipType
 	
 	/**
 	 *  @return: The object taken off.
@@ -21,6 +21,15 @@ public class InventoryEquips extends Inventory {
 		equippedContents[slot] = i;
 		
 		return i2;
+	}
+	
+	public ItemEquippable equipItem(String s){
+		for(Item i : contents){
+			if(i.getName().equals(s)){
+				return equipItem((ItemEquippable)i);
+			}
+		}
+		return null;
 	}
 	
 	public void unequipItem(ItemEquippable i){
@@ -87,6 +96,10 @@ public class InventoryEquips extends Inventory {
 		return sdef;
 	}
 	
+	public ItemEquippable[] getEquippedContents() {
+		return equippedContents;
+	}
+
 	public InventoryEquips clone(){
 		InventoryEquips e = new InventoryEquips();
 		

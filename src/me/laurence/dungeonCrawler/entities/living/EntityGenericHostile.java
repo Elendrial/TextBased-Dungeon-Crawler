@@ -19,6 +19,7 @@ public class EntityGenericHostile extends EntityLiving{
 	
 	protected EntityGenericHostile(EntityGenericHostile e){
 		super(e);
+		((AIHostile) this.ai).e = this;
 	}
 	
 	@Override

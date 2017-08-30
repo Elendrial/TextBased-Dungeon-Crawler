@@ -30,7 +30,10 @@ abstract public class Item extends Entity{
 
 	@Override
 	public void onInteract(Entity e) {
-		if(e instanceof EntityLiving) ((EntityLiving) e).getInventory().addItem(this);
+		if(e instanceof EntityLiving){
+			((EntityLiving) e).getInventory().addItem(this);
+			this.destroy(e);
+		}
 	}
 
 	@Override

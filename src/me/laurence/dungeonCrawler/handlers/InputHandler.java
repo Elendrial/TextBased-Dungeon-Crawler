@@ -10,6 +10,8 @@ import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
 import me.laurence.dungeonCrawler.general.Floor;
+import me.laurence.dungeonCrawler.items.Item;
+import me.laurence.dungeonCrawler.items.equippables.ItemEquippable;
 
 public class InputHandler {
 	private static Scanner scan = new Scanner(System.in);
@@ -19,7 +21,7 @@ public class InputHandler {
 		return scan.nextLine();
 	}
 
-	//TODO: Tidy this up.
+	//TODO: Tidy this up, maybe split each into a method? Probably just put the point stuff in a method.
 	private static String helpString = "Unknown command, type '?' for help.";
 	public static void getPlayerAction() {
 		String s = scan.nextLine().trim().toLowerCase();
@@ -32,10 +34,12 @@ public class InputHandler {
 			switch(s.split(" ")[0]){
 			case "?":
 				PrintHandler.printHelp();
+				getPlayerAction();
 				return;
 			
 			case "stats":
 				PrintHandler.printStats();
+				getPlayerAction();
 				return;
 			
 			case "mv":
@@ -71,7 +75,10 @@ public class InputHandler {
 					}
 					Entity e = f.getEntityAt(p);
 					if(e != null) e.onInteract(DungeonCrawler.player);
-					else PrintHandler.println("There is nothing there... {" + p.toString() + "}");
+					else{
+						PrintHandler.println("There is nothing there... {" + p.toString() + "}");
+						getPlayerAction();
+					}
 				}
 				else{
 					PrintHandler.println(helpString);
@@ -101,6 +108,28 @@ public class InputHandler {
 				}
 				return;
 			
+			case "inv":
+				PrintHandler.println("Inventory:");
+				for(Item i : DungeonCrawler.player.getInventory().getContents()){
+					PrintHandler.println(i.getName());
+				}
+				
+				PrintHandler.println("\nEquipped Items:");
+				for(ItemEquippable i : DungeonCrawler.player.getInventory().getEquippedContents()){
+					if(i != null) PrintHandler.println(i.getName());
+				}
+				getPlayerAction();
+				return;
+			
+			case "equip":
+				if(DungeonCrawler.player.getInventory().containsItem(s.substring(6))){
+					DungeonCrawler.player.equip(s.substring(6), true);
+				}
+				else{
+					PrintHandler.println("You do not currently have '" + s.substring(6) + "' in your inventory.");
+					getPlayerAction();
+				}
+				return;
 				
 			case "#list":
 				for(Entity e : DungeonCrawler.getFloor().entities){
@@ -138,8 +167,10 @@ public class InputHandler {
 	//	commandDesc.put("ratk", "Ranged attack in l/r/d/u direction.");
 	//	commandDesc.put("satk", "Spell Attack in l/r/d/u direction.");
 		commandDesc.put("?", "Show this help menu.");
+		commandDesc.put("inv", "Display your inventory.");
+		commandDesc.put("equip", "Equip \"x\" item from your inventory");
 		
-		if(GameData.Global.debug) commandDesc.put("#list", "lists all entities & their positions");
+		if(GameData.Global.debug) commandDesc.put("#list", "Lists all entities & their positions");
 	}
 	
 }

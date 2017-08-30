@@ -51,7 +51,7 @@ public abstract class Entity{
 		if(e == null) position.setLocation(toMoveTo);
 		else if(e.canPassThrough()) position.setLocation(toMoveTo);
 		
-		else PrintHandler.println("Could not move to (" + (this.position.x + p.x) +", " + (this.position.y + p.y) + ")!");
+		else PrintHandler.println("Could not move by (" + p.x + ", " + p.y + ") to (" + (this.position.x + p.x) +", " + (this.position.y + p.y) + ")!");
 	}
 	
 	public void moveBy(int x, int y){

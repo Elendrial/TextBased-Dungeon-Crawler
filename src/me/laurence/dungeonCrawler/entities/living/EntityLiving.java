@@ -51,6 +51,12 @@ abstract public class EntityLiving extends Entity{
 		if(i2 != null) inventory.addItem(i2);
 	}
 	
+	public void equip(String s, boolean fromInventory){
+		if(fromInventory) inventory.removeItem(s);
+		ItemEquippable i2 = inventory.equipItem(s);
+		if(i2 != null) inventory.addItem(i2);
+	}
+	
 	public int getBaseMaxHealth() {
 		return stats.maxHealth;
 	}

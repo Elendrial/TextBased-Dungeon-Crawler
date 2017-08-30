@@ -66,6 +66,10 @@ public abstract class Inventory {
 		this.name = name;
 		return this;
 	}
+	
+	public ArrayList<Item> getContents(){
+		return this.contents;
+	}
 
 	@Override
 	public int hashCode() {

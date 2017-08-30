@@ -10,44 +10,64 @@ public class AbilityStats { // Name is temporary.
 	public int getMaxHealth() {
 		return maxHealth;
 	}
-	public void setMaxHealth(int maxHealth) {
+	
+	public AbilityStats setMaxHealth(int maxHealth) {
 		this.maxHealth = maxHealth;
+		return this;
 	}
+	
 	public int getMoveRange() {
 		return moveRange;
 	}
-	public void setMoveRange(int moveRange) {
+	
+	public AbilityStats setMoveRange(int moveRange) {
 		this.moveRange = moveRange;
+		return this;
 	}
+	
 	public int getAttackRange() {
 		return attackRange;
 	}
-	public void setAttackRange(int attackRange) {
+	
+	public AbilityStats setAttackRange(int attackRange) {
 		this.attackRange = attackRange;
+		return this;
 	}
+	
 	public int getDef() {
 		return def;
 	}
-	public void setDef(int def) {
+	
+	public AbilityStats setDef(int def) {
 		this.def = def;
+		return this;
 	}
+	
 	public int getAtk() {
 		return atk;
 	}
-	public void setAtk(int atk) {
+	
+	public AbilityStats setAtk(int atk) {
 		this.atk = atk;
+		return this;
 	}
+	
 	public int getSatk() {
 		return satk;
 	}
-	public void setSatk(int satk) {
+	
+	public AbilityStats setSatk(int satk) {
 		this.satk = satk;
+		return this;
 	}
+	
 	public int getSdef() {
 		return sdef;
 	}
-	public void setSdef(int sdef) {
+	
+	public AbilityStats setSdef(int sdef) {
 		this.sdef = sdef;
+		return this;
 	}
 	
 	public AbilityStats clone(){

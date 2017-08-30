@@ -25,7 +25,7 @@ public class AIHostile implements IEntityAI{
 			inRange = (xDif * xDif) + (yDif * yDif) < e.getBaseAttackRange();
 			
 			if(!inRange){
-				if(Math.abs(xDif) > Math.abs(yDif)) e.moveBy(new Point((xDif / Math.abs(xDif)) ,0));
+				if(Math.abs(xDif) > Math.abs(yDif)) e.moveBy(xDif / Math.abs(xDif) ,0);
 				else e.moveBy(new Point((yDif / Math.abs(yDif)) ,0));
 			}
 			else{
