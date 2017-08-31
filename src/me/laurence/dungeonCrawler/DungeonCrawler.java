@@ -9,6 +9,7 @@ import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
 import me.laurence.dungeonCrawler.general.Floor;
 import me.laurence.dungeonCrawler.handlers.InputHandler;
 import me.laurence.dungeonCrawler.handlers.PrintHandler;
+import me.laurence.dungeonCrawler.items.ItemList;
 
 public class DungeonCrawler {
 	
@@ -22,6 +23,7 @@ public class DungeonCrawler {
 	
 	public static void main(String[] args){
 		EntityList.initList();
+		ItemList.initList();
 		InputHandler.initList();
 		
 		GameData.Dungeon.floor = 0;
@@ -39,7 +41,6 @@ public class DungeonCrawler {
 	
 	public static void gameLoop(){
 		while(running){
-			PrintHandler.print("What would you like to do? ");
 			InputHandler.getPlayerAction();
 			floors.get(GameData.Dungeon.floor).update();
 		}

@@ -21,7 +21,7 @@ public class EntityBat extends EntityLiving{
 	}
 	
 	@Override
-	public float getSpawnChance() {
+	public float getSpawnChance(float currentDifficulty) {
 		return 0;
 	}
 

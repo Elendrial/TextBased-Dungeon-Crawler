@@ -24,6 +24,7 @@ public class InputHandler {
 	//TODO: Tidy this up, maybe split each into a method? Probably just put the point stuff in a method.
 	private static String helpString = "Unknown command, type '?' for help.";
 	public static void getPlayerAction() {
+		PrintHandler.print("\nWhat would you like to do? ");
 		String s = scan.nextLine().trim().toLowerCase();
 		while(!commandDesc.containsKey(s.split(" ")[0])){
 			PrintHandler.println(helpString);
@@ -135,6 +136,7 @@ public class InputHandler {
 				for(Entity e : DungeonCrawler.getFloor().entities){
 					if(!(e instanceof EntityWall)) PrintHandler.printEntityInfo(e);
 				}
+				getPlayerAction();
 				return;
 				
 			}

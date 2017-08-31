@@ -16,7 +16,7 @@ public class EntityWall extends EntityStatic{
 	}
 
 	@Override
-	public float getSpawnChance() {
+	public float getSpawnChance(float currentDifficulty) {
 		return 0;
 	}
 

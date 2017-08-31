@@ -46,14 +46,14 @@ abstract public class EntityLiving extends Entity{
 	public void onWalkOn(Entity e) {}
 	
 	public void equip(ItemEquippable i, boolean fromInventory){
-		if(fromInventory) inventory.removeItem(i);
 		ItemEquippable i2 = inventory.equipItem(i);
+		if(fromInventory) inventory.removeItem(i);
 		if(i2 != null) inventory.addItem(i2);
 	}
 	
 	public void equip(String s, boolean fromInventory){
-		if(fromInventory) inventory.removeItem(s);
 		ItemEquippable i2 = inventory.equipItem(s);
+		if(fromInventory) inventory.removeItem(s);
 		if(i2 != null) inventory.addItem(i2);
 	}
 	

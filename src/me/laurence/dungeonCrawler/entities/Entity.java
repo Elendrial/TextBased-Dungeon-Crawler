@@ -33,7 +33,7 @@ public abstract class Entity{
 		}
 	}
 	
-	public abstract float getSpawnChance();
+	public abstract float getSpawnChance(float currentDifficulty);
 	public abstract void onHit(Entity e);
 	public abstract void onInteract(Entity e);
 	public abstract void onWalkOn(Entity e);
