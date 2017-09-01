@@ -66,7 +66,7 @@ public class EntityList {
 				f= livingEntities.get(s).getSpawnChance(difficulty);
 				
 				chances.put(livingEntities.get(s), f);
-				total = f;
+				total += f;
 			}
 			
 			for(EntityLiving e : chances.keySet()){

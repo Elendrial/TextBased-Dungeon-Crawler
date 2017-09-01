@@ -35,7 +35,9 @@ public class EntityGenericHostile extends EntityLiving{
 
 	@Override // Uses modified Chi-squared/Chi distribution to get results - need to edit to stop large difficulties overloading factorial.
 	public float getSpawnChance(float currentDifficulty) {
-		return (float) ((Math.pow(currentDifficulty, preferredDifficulty -1) * Math.pow(Math.E, -currentDifficulty))/(Math.pow(2, preferredDifficulty) * factorial(1, (int)(preferredDifficulty-1))));
+		float dif = currentDifficulty - 1;
+		dif = dif > 0 ? dif : 0.1f;
+		return (float) ((Math.pow(dif, preferredDifficulty -1) * Math.pow(Math.E, -dif))/(Math.pow(2, preferredDifficulty) * factorial(1, (int)(preferredDifficulty-1))));
 	}
 
 	@Override

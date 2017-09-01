@@ -22,6 +22,7 @@ abstract public class Item extends Entity{
 	
 	@Override
 	public float getSpawnChance() {return 0;}
+	public float getSpawnChance(float difficulty) {return 0;}
 
 	@Override
 	public void onHit(Entity e) {
