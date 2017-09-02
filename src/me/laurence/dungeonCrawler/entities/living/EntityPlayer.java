@@ -12,11 +12,11 @@ public class EntityPlayer extends EntityLiving{
 	public EntityPlayer(){
 		this.charCode = 'P';
 		this.name = "player";
-		stats.moveRange = 2;
-		stats.atk = 1;
-		stats.def = 0;
-		stats.satk = 1;
-		stats.sdef = 0;
+		stats.setMoveRange(2);
+		stats.setAtk(1);
+		stats.setDef(0);
+		stats.setSatk(1);
+		stats.setSdef(0);
 		
 		this.canPassThrough = true;
 		this.health = 10;

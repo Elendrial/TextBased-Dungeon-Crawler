@@ -78,7 +78,6 @@ public class Floor {
 			p = new Point(x, y);
 		}while(getEntityAt(p) != null);
 		
-	//	System.err.println(p.toString());
 		return p;
 	}
 	

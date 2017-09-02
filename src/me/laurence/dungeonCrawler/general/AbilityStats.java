@@ -2,10 +2,11 @@ package me.laurence.dungeonCrawler.general;
 
 public class AbilityStats { // Name is temporary.
 	
-	public int maxHealth = 100;
-	public int moveRange = 1;
-	public int attackRange = 1;
-	public int def = 0, atk = 1, satk = 0, sdef = 0;
+	protected int maxHealth = 100;
+	protected int moveRange = 1;
+	protected int attackRange = 1;
+	protected int def = 0, atk = 1, satk = 0, sdef = 0;
+	protected int luck = 0;
 	
 	public int getMaxHealth() {
 		return maxHealth;
@@ -70,6 +71,15 @@ public class AbilityStats { // Name is temporary.
 		return this;
 	}
 	
+	public int getLuck() {
+		return luck;
+	}
+
+	public AbilityStats setLuck(int luck) {
+		this.luck = luck;
+		return this;
+	}
+
 	public AbilityStats clone(){
 		AbilityStats s = new AbilityStats();
 		s.maxHealth = this.maxHealth;
@@ -79,6 +89,7 @@ public class AbilityStats { // Name is temporary.
 		s.atk = this.atk;
 		s.satk = this.satk;
 		s.sdef = this.sdef;
+		s.luck = this.luck;
 		return s;
 	}
 	

@@ -58,7 +58,7 @@ abstract public class EntityLiving extends Entity{
 	}
 	
 	public int getBaseMaxHealth() {
-		return stats.maxHealth;
+		return stats.getMaxHealth();
 	}
 
 	public int getEffectiveMaxHealth(){
@@ -66,7 +66,7 @@ abstract public class EntityLiving extends Entity{
 	}
 	
 	public EntityLiving setBaseMaxHealth(int maxHealth) {
-		stats.maxHealth = maxHealth;
+		stats.setMaxHealth(maxHealth);
 		return this;
 	}
 
@@ -75,12 +75,12 @@ abstract public class EntityLiving extends Entity{
 	}
 
 	public EntityLiving setHealth(int health) {
-		this.health = health > stats.maxHealth ? stats.maxHealth : health;
+		this.health = health > stats.getMaxHealth() ? stats.getMaxHealth() : health;
 		return this;
 	}
 
 	public int getBaseMoveRange() {
-		return stats.moveRange;
+		return stats.getMoveRange();
 	}
 
 	public int getEffectiveMoveRange(){
@@ -88,12 +88,12 @@ abstract public class EntityLiving extends Entity{
 	}
 	
 	public EntityLiving setBaseMoveRange(int moveRange) {
-		stats.moveRange = moveRange;
+		stats.setMoveRange(moveRange);
 		return this;
 	}
 
 	public int getBaseAttackRange() {
-		return stats.attackRange;
+		return stats.getAttackRange();
 	}
 
 	public int getEffectiveAttackRange(){
@@ -101,12 +101,12 @@ abstract public class EntityLiving extends Entity{
 	}
 	
 	public EntityLiving setBaseAttackRange(int attackRange) {
-		stats.attackRange = attackRange;
+		stats.setAttackRange(attackRange);
 		return this;
 	}
 
 	public int getBaseDef() {
-		return stats.def;
+		return stats.getDef();
 	}
 
 	public int getEffectiveDef(){
@@ -114,12 +114,12 @@ abstract public class EntityLiving extends Entity{
 	}
 	
 	public EntityLiving setBaseDef(int def) {
-		stats.def = def;
+		stats.setDef(def);
 		return this;
 	}
 
 	public int getBaseAtk() {
-		return stats.atk;
+		return stats.getAtk();
 	}
 
 	public int getEffectiveAtk(){
@@ -127,12 +127,12 @@ abstract public class EntityLiving extends Entity{
 	}
 	
 	public EntityLiving setBaseAtk(int atk) {
-		stats.atk = atk;
+		stats.setAtk(atk);
 		return this;
 	}
 
 	public int getBaseSatk() {
-		return stats.satk;
+		return stats.getSatk();
 	}
 
 	public int getEffectiveSatk(){
@@ -140,12 +140,12 @@ abstract public class EntityLiving extends Entity{
 	}
 	
 	public EntityLiving setBaseSatk(int satk) {
-		stats.satk = satk;
+		stats.setSatk(satk);
 		return this;
 	}
 
 	public int getBaseSdef() {
-		return stats.sdef;
+		return stats.getSdef();
 	}
 
 	public int getEffectiveSdef(){
@@ -153,7 +153,16 @@ abstract public class EntityLiving extends Entity{
 	}
 	
 	public EntityLiving setBaseSdef(int sdef) {
-		stats.sdef = sdef;
+		stats.setSdef(sdef);
+		return this;
+	}
+	
+	public int getLuck() {
+		return stats.getLuck();
+	}
+	
+	public EntityLiving setLuck(int luck) {
+		stats.setLuck(luck);
 		return this;
 	}
 	

@@ -15,3 +15,6 @@ TODO list:
 - Add Chests
 - Add score system
 - Check if possible to avoid casting in 'x'List without bloat.
+
+Other notes:
+- For some reason I've kinda gone over the top with making vars protected, if I've missed any getters/setters let me know!

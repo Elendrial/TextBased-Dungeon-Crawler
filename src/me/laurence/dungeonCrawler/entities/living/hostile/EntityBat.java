@@ -8,12 +8,12 @@ public class EntityBat extends EntityLiving{
 	public EntityBat(){
 		super();
 		this.name = "bat";
-		stats.atk = 1;
+		stats.setAtk(1);
 		this.canPassThrough = true;
 		this.charCode = 'b';
 		this.health = 3;
-		stats.maxHealth = 3;
-		stats.moveRange = 2;
+		stats.setMaxHealth(3);
+		stats.setMoveRange(2);
 	}
 	
 	protected EntityBat(EntityBat e){
