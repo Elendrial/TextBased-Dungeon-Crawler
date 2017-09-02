@@ -10,6 +10,15 @@ public class InventoryEquips extends Inventory {
 
 	protected ItemEquippable[] equippedContents = new ItemEquippable[EquipType.values().length]; // Uses order from EquipType
 	
+	public InventoryEquips(){}
+	private InventoryEquips(InventoryEquips i){
+		super(i);
+		
+		for(ItemEquippable ie : i.equippedContents){
+			if(ie!=null) this.equippedContents[ie.getArmourSlot().ordinal()] = ie.clone();
+		}
+	}
+	
 	/**
 	 *  @return: The object taken off.
 	 */
@@ -43,7 +52,7 @@ public class InventoryEquips extends Inventory {
 	public int getMaxHealth() {
 		int maxHealth = 0;
 		for(ItemEquippable i : equippedContents){
-			maxHealth += i.getStats().maxHealth;
+			maxHealth += i.getStats().getMaxHealth();
 		}
 		return maxHealth;
 	}
@@ -51,7 +60,7 @@ public class InventoryEquips extends Inventory {
 	public int getMoveRange() {
 		int moveRange = 0;
 		for(ItemEquippable i : equippedContents){
-			moveRange += i.getStats().moveRange;
+			moveRange += i.getStats().getMoveRange();
 		}
 		return moveRange;
 	}
@@ -59,7 +68,7 @@ public class InventoryEquips extends Inventory {
 	public int getAttackRange() {
 		int attackRange = 0;
 		for(ItemEquippable i : equippedContents){
-			attackRange += i.getStats().attackRange;
+			attackRange += i.getStats().getAttackRange();
 		}
 		return attackRange;
 	}
@@ -67,7 +76,7 @@ public class InventoryEquips extends Inventory {
 	public int getDef() {
 		int def = 0;
 		for(ItemEquippable i : equippedContents){
-			def += i.getStats().def;
+			def += i.getStats().getDef();
 		}
 		return def;
 	}
@@ -75,7 +84,7 @@ public class InventoryEquips extends Inventory {
 	public int getAtk() {
 		int atk = 0;
 		for(ItemEquippable i : equippedContents){
-			atk += i.getStats().atk;
+			atk += i.getStats().getAtk();
 		}
 		return atk;
 	}
@@ -83,7 +92,7 @@ public class InventoryEquips extends Inventory {
 	public int getSatk() {
 		int satk = 0;
 		for(ItemEquippable i : equippedContents){
-			satk += i.getStats().satk;
+			satk += i.getStats().getSatk();
 		}
 		return satk;
 	}
@@ -91,7 +100,7 @@ public class InventoryEquips extends Inventory {
 	public int getSdef() {
 		int sdef = 0;
 		for(ItemEquippable i : equippedContents){
-			sdef += i.getStats().sdef;
+			sdef += i.getStats().getSdef();
 		}
 		return sdef;
 	}
@@ -101,20 +110,7 @@ public class InventoryEquips extends Inventory {
 	}
 
 	public InventoryEquips clone(){
-		InventoryEquips e = new InventoryEquips();
-		
-		for(Item i : this.contents){
-			e.contents.add(i.clone());
-		}
-		
-		for(ItemEquippable i : this.equippedContents){
-			if(i!=null) e.equippedContents[i.getArmourSlot().ordinal()] = i.clone();
-		}
-		
-		e.maxSize = this.maxSize;
-		e.name = this.name;
-		
-		return e;
+		return new InventoryEquips(this);
 	}
 
 	@Override

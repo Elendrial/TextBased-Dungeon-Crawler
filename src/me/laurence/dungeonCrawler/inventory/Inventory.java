@@ -4,11 +4,21 @@ import java.util.ArrayList;
 
 import me.laurence.dungeonCrawler.items.Item;
 
-public abstract class Inventory {
+public class Inventory {
 	
 	protected int maxSize;
 	protected ArrayList<Item> contents = new ArrayList<Item>();
 	protected String name;
+	
+	public Inventory(){}
+	public Inventory(Inventory i){
+		this.maxSize = i.maxSize;
+		this.name = i.name;
+		
+		for(Item it : this.contents){
+			this.contents.add(it.clone());
+		}
+	}
 	
 	public boolean addItem(Item i){
 		if(contents.size() < maxSize){ 
@@ -71,6 +81,10 @@ public abstract class Inventory {
 		return this.contents;
 	}
 
+	public Inventory clone(){
+		return new Inventory(this);
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
