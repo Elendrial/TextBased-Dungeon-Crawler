@@ -13,19 +13,6 @@ import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
 
 
 public class EntityList {
-	/*
-	public static HashMap<Class<? extends EntityLiving>, Boolean> livingEntities = new HashMap<Class<? extends EntityLiving>, Boolean>();
-	public static HashMap<Class<? extends EntityStatic>, Boolean> staticEntities = new HashMap<Class<? extends EntityStatic>, Boolean>(); 
-	
-	// List as false if it should not be spawned in the normal way, true if it should.
-	public static void initList(){
-		livingEntities.put(EntityPlayer.class, false);
-		livingEntities.put(EntityBat.class, true);
-		
-		staticEntities.put(EntityWall.class, false);
-		staticEntities.put(EntityStairs.class, false);
-	}
-	*/
 	
 	public static HashMap<String, EntityLiving> livingEntities = new HashMap<String, EntityLiving>();
 	public static HashMap<String, EntityStatic> staticEntities = new HashMap<String, EntityStatic>(); 

@@ -12,9 +12,9 @@ TODO list:
 - Add ranged combat for player.
 - Make things more consistent.
 - Add more Entities/Items
-- Add Chests
 - Add score system
 - Check if possible to avoid casting in 'x'List without bloat.
+- Print out the commands in alphabetical order.
 
 Other notes:
 - For some reason I've kinda gone over the top with making vars protected, if I've missed any getters/setters let me know!

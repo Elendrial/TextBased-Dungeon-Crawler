@@ -7,6 +7,7 @@ import java.util.Scanner;
 import me.laurence.dungeonCrawler.DungeonCrawler;
 import me.laurence.dungeonCrawler.GameData;
 import me.laurence.dungeonCrawler.entities.Entity;
+import me.laurence.dungeonCrawler.entities.living.EntityLiving;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
 import me.laurence.dungeonCrawler.general.Floor;
@@ -28,6 +29,11 @@ public class InputHandler {
 		while(!commandDesc.containsKey(s.split(" ")[0])){
 			PrintHandler.println(helpString);
 			s = scan.nextLine();
+		}
+		
+		if(s.startsWith("#") && GameData.Global.debug){
+			debugCommand(s.substring(1));
+			return;
 		}
 		
 		try{
@@ -128,14 +134,6 @@ public class InputHandler {
 				if(inv.isEquipped(s.substring(8)))
 					inv.addItem(inv.unequipItem(s.substring(8)));
 				return;
-				
-			case "#list":
-				for(Entity e : DungeonCrawler.getFloor().entities){
-					if(!(e instanceof EntityWall)) PrintHandler.printEntityInfo(e);
-				}
-				getPlayerAction();
-				return;
-				
 			}
 		}
 		catch(Exception e){
@@ -191,6 +189,36 @@ public class InputHandler {
 		return false;
 	}
 	
+	
+	public static void debugCommand(String s){
+		switch(s.split(" ")[0]){
+		case "list":
+			for(Entity e : DungeonCrawler.getFloor().entities){
+				if(!(e instanceof EntityWall)) PrintHandler.printEntityInfo(e);
+			}
+			return;
+		case "downfloor":
+			DungeonCrawler.changeFloor(1);
+			return;
+		case "upfloor":
+			DungeonCrawler.changeFloor(-1);
+			return;
+		case "tofloor":
+			DungeonCrawler.changeFloor(Integer.parseInt(s.substring(8)) - GameData.Dungeon.floor);
+			return;
+		case "setdif":
+			GameData.Dungeon.difficulty = Float.parseFloat(s.substring(7));
+			PrintHandler.println("Difficulty set to: " + Float.parseFloat(s.substring(7)));
+			return;
+		case "killall":
+			for(Entity e : DungeonCrawler.getFloor().entities){
+				if(e instanceof EntityLiving && !(e instanceof EntityPlayer)) e.destroy(DungeonCrawler.player);
+			}
+			return;
+		}
+		DungeonCrawler.floorUpdateSkip = true;
+	}
+	
 	public static void initList(){
 		commandDesc.put("stats", "Print stats for this run");
 		commandDesc.put("mv", "Move in l/r/d/u directions - allows for multiple moves in 1 turn, eg1: 'mv l', eg2: 'mv rrurd'");
@@ -203,7 +231,15 @@ public class InputHandler {
 		commandDesc.put("equip", "Equip \"x\" item from your inventory");
 		commandDesc.put("unequip", "Remove \"x\" item from your equip list and add it to your inventory");
 		
-		if(GameData.Global.debug) commandDesc.put("#list", "Lists all entities & their positions");
+		if(GameData.Global.debug){
+			commandDesc.put("#list", "Lists all entities & their positions");
+			commandDesc.put("#downfloor", "go down a floor");
+			commandDesc.put("#upfloor", "go up a floor");
+			commandDesc.put("#tofloor", "move to floor");
+			commandDesc.put("#setdif", "set difficulty");
+			commandDesc.put("#moveto", "move to position");
+			commandDesc.put("#killall", "kills all EntityLiving's");
+		}
 	}
 	
 }
