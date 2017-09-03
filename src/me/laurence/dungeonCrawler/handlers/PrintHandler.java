@@ -53,19 +53,19 @@ public class PrintHandler {
 	public static void printPlayerInventory(){
 		println("Inventory:");
 		for(Item i : DungeonCrawler.player.getInventory().getContents()){
-			println(i.getName());
+			println("\t- " + i.getName());
 		}
 		
 		println("\nEquipped Items:");
 		for(ItemEquippable i : DungeonCrawler.player.getInventory().getEquippedContents()){
-			if(i != null) println(i.getName());
+			if(i != null) println("\t- " + i.getName());
 		}
 	}
 	
 	public static void printInventory(Inventory i){
 		println("Contents of " + i.getName() + ":");
 		for(Item item : i.getContents()){
-			println(item.getName());
+			println("\t- " + item.getName());
 		}
 	}
 	

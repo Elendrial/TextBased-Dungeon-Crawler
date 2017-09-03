@@ -10,6 +10,7 @@ import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
 import me.laurence.dungeonCrawler.general.Floor;
+import me.laurence.dungeonCrawler.inventory.PlayerInventory;
 
 public class InputHandler {
 	private static Scanner scan = new Scanner(System.in);
@@ -122,6 +123,12 @@ public class InputHandler {
 				}
 				return;
 				
+			case "unequip":
+				PlayerInventory inv = (PlayerInventory) DungeonCrawler.player.getInventory();
+				if(inv.isEquipped(s.substring(8)))
+					inv.addItem(inv.unequipItem(s.substring(8)));
+				return;
+				
 			case "#list":
 				for(Entity e : DungeonCrawler.getFloor().entities){
 					if(!(e instanceof EntityWall)) PrintHandler.printEntityInfo(e);
@@ -139,23 +146,31 @@ public class InputHandler {
 	}
 	
 	public static String getPlayerChestAction(){
-		PrintHandler.println("Would you like to [p]ickup an item, or [d]rop one?");
+		PrintHandler.println("\nWould you like to [p]ickup an item, or [d]rop one? (Or [c]ancel?)");
 		String s = scan.nextLine();
-		switch(s){
+		switch(s.toLowerCase()){
 		case "p":
+		case "pickup":
 			PrintHandler.println("Which item would you like to pickup?");
+			s = "p ";
 			break;
 		case "d":
+		case "drop":
 			PrintHandler.println("Which item would you like to drop? (type \'#i\' for your inventory)");
+			s = "d ";
 			break;
+		case "c":
+		case "cancel":
+			PrintHandler.println("Cancelling operation.");
+			return "c";
 		default:
 			PrintHandler.println("No option succusfully chosen, cancelling operation.");
-			return null;
+			return "c";
 		}
 		String s2 = scan.nextLine();
 		if(s2.contains("#i")){
 			PrintHandler.printPlayerInventory();
-			PrintHandler.println("Item: ");
+			PrintHandler.println("Which item? ");
 			s += scan.nextLine();
 		}
 		else s += s2;
@@ -186,6 +201,7 @@ public class InputHandler {
 		commandDesc.put("?", "Show this help menu.");
 		commandDesc.put("inv", "Display your inventory.");
 		commandDesc.put("equip", "Equip \"x\" item from your inventory");
+		commandDesc.put("unequip", "Remove \"x\" item from your equip list and add it to your inventory");
 		
 		if(GameData.Global.debug) commandDesc.put("#list", "Lists all entities & their positions");
 	}

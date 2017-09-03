@@ -45,8 +45,33 @@ public class InventoryEquips extends Inventory {
 		equippedContents[i.getArmourSlot().ordinal()] = null;
 	}
 	
+	
+	public ItemEquippable unequipItem(String s){
+		for(ItemEquippable item : equippedContents){
+			if(item != null) if(item.getName().equals(s)){
+				unequipItem(item);
+				return item;
+			}
+		}
+		return null;
+	}
+	
 	public void unequipItem(int i){
 		equippedContents[i] = null;
+	}
+	
+	public boolean isEquipped(Item i){
+		for(Item item : equippedContents){
+			if(item != null) if(item.equals(i)) return true;
+		}
+		return false;
+	}
+	
+	public boolean isEquipped(String s){
+		for(Item item : equippedContents){
+			if(item != null) if(item.getName().equals(s)) return true;
+		}
+		return false;
 	}
 	
 	public int getMaxHealth() {

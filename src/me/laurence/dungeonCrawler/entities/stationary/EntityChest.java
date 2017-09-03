@@ -1,6 +1,7 @@
 package me.laurence.dungeonCrawler.entities.stationary;
 
 import me.laurence.dungeonCrawler.DungeonCrawler;
+import me.laurence.dungeonCrawler.GameData;
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
 import me.laurence.dungeonCrawler.handlers.InputHandler;
@@ -18,11 +19,12 @@ public class EntityChest extends EntityStatic{
 		this.name = "chest";
 		
 		this.inventory = new Inventory();
-		this.inventory.setName("Chest Inventory");
+		this.inventory.setName("chest");
 		this.inventory.setMaxSize(15);
 	}
 	
 	private EntityChest(EntityChest e){
+		super(e);
 		this.inventory = e.inventory.clone();
 	}
 	
@@ -32,7 +34,7 @@ public class EntityChest extends EntityStatic{
 	}
 
 	@Override
-	public Entity clone() {
+	public EntityChest clone() {
 		return new EntityChest(this);
 	}
 
@@ -64,15 +66,24 @@ public class EntityChest extends EntityStatic{
 					DungeonCrawler.player.getInventory().addItem(inventory.getItem(s.substring(2)));
 					inventory.removeItem(s.substring(2));
 				}
-				else PrintHandler.println("Item not found.");
+				else{
+					PrintHandler.println("Item " + s.substring(2) + "not found.");
+					if(GameData.Global.debug) PrintHandler.println("command: " + s);
+				}
 			}
-			else{
+			else if(s.startsWith("d ")){
 				Inventory inv = DungeonCrawler.player.getInventory();
 				if(inv.containsItem(s.substring(2))){
 					inventory.addItem(inv.getItem(s.substring(2)));
 					inv.removeItem(s.substring(2));
 				}
-				else PrintHandler.println("Item not found.");
+				else{
+					PrintHandler.println("Item " + s.substring(2) + "not found.");
+					if(GameData.Global.debug) PrintHandler.println("command: " + s);
+				}
+			}
+			else{
+				DungeonCrawler.floorUpdateSkip = true;
 			}
 		}
 	}
