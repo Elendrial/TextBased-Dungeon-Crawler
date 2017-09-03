@@ -25,7 +25,7 @@ public class Floor {
 		this.floor = floor;
 		
 		livingVariance = (int) (DungeonCrawler.rand.nextInt(floor+1) - (floor + 1)/(2 + difficulty)); // Arbitrary equations
-		staticVariance = (int) (DungeonCrawler.rand.nextInt(floor+1) - (floor + 1)/(2 - difficulty)); // Probably should find something better
+		staticVariance = (int) (DungeonCrawler.rand.nextInt(floor+1) - (floor + 1)/(2 - difficulty)); // Definitely should find something better
 		
 		dimensions = new Point(
 				(int)(25 + 5*(floor-difficulty) + (DungeonCrawler.rand.nextInt(floor+1) - (floor+1)/2)),
@@ -42,7 +42,7 @@ public class Floor {
 		entities.add(new EntityStairs().setFloorMove(1).setPosition(getRandomPoint(true)));
 		
 		for(int i = 0; i < Math.ceil(floor * difficulty) + livingVariance; i++){
-			entities.add(EntityList.getRandomEntityLiving(difficulty * floor).setPosition(getRandomPoint(true)));
+			entities.add(EntityList.getRandomEntityLiving(difficulty * floor).adjustStats(difficulty).setPosition(getRandomPoint(true)));
 		}
 		
 	}

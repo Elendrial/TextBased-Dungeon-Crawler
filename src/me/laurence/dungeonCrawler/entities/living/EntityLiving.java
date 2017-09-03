@@ -57,6 +57,15 @@ abstract public class EntityLiving extends Entity{
 		if(i2 != null) inventory.addItem(i2);
 	}
 	
+	public EntityLiving adjustStats(float adjustment){
+		stats.setAtk((int) (stats.getAtk()*adjustment));
+		stats.setDef((int) (stats.getDef()*adjustment));
+		stats.setSatk((int) (stats.getSatk()*adjustment));
+		stats.setSdef((int) (stats.getSdef()*adjustment));
+		stats.setMaxHealth((int) (stats.getMaxHealth()*adjustment));
+		return this;
+	}
+	
 	public int getBaseMaxHealth() {
 		return stats.getMaxHealth();
 	}
