@@ -6,6 +6,7 @@ import me.laurence.dungeonCrawler.DungeonCrawler;
 import me.laurence.dungeonCrawler.entities.living.EntityGenericHostile;
 import me.laurence.dungeonCrawler.entities.living.EntityLiving;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
+import me.laurence.dungeonCrawler.entities.stationary.EntityChest;
 import me.laurence.dungeonCrawler.entities.stationary.EntityStairs;
 import me.laurence.dungeonCrawler.entities.stationary.EntityStatic;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
@@ -49,6 +50,7 @@ public class EntityList {
 		
 		addToEntityList(new EntityWall());
 		addToEntityList(new EntityStairs());
+		addToEntityList(new EntityChest());
 	}
 	
 	public static void addToEntityList(Entity e){

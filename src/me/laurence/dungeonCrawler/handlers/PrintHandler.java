@@ -1,8 +1,12 @@
 package me.laurence.dungeonCrawler.handlers;
 
+import me.laurence.dungeonCrawler.DungeonCrawler;
 import me.laurence.dungeonCrawler.GameData;
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.general.Floor;
+import me.laurence.dungeonCrawler.inventory.Inventory;
+import me.laurence.dungeonCrawler.items.Item;
+import me.laurence.dungeonCrawler.items.equippables.ItemEquippable;
 
 public class PrintHandler {
 	
@@ -44,6 +48,25 @@ public class PrintHandler {
 
 	public static void printEntityInfo(Entity e) {
 		println(e.getCharCode() + ":" + e.getName() + "\t:\t(" + e.getPosition().x + ", " + e.getPosition().y + ")");
+	}
+	
+	public static void printPlayerInventory(){
+		println("Inventory:");
+		for(Item i : DungeonCrawler.player.getInventory().getContents()){
+			println(i.getName());
+		}
+		
+		println("\nEquipped Items:");
+		for(ItemEquippable i : DungeonCrawler.player.getInventory().getEquippedContents()){
+			if(i != null) println(i.getName());
+		}
+	}
+	
+	public static void printInventory(Inventory i){
+		println("Contents of " + i.getName() + ":");
+		for(Item item : i.getContents()){
+			println(item.getName());
+		}
 	}
 	
 }

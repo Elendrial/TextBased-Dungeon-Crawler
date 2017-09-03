@@ -10,8 +10,6 @@ import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
 import me.laurence.dungeonCrawler.general.Floor;
-import me.laurence.dungeonCrawler.items.Item;
-import me.laurence.dungeonCrawler.items.equippables.ItemEquippable;
 
 public class InputHandler {
 	private static Scanner scan = new Scanner(System.in);
@@ -110,15 +108,7 @@ public class InputHandler {
 				return;
 			
 			case "inv":
-				PrintHandler.println("Inventory:");
-				for(Item i : DungeonCrawler.player.getInventory().getContents()){
-					PrintHandler.println(i.getName());
-				}
-				
-				PrintHandler.println("\nEquipped Items:");
-				for(ItemEquippable i : DungeonCrawler.player.getInventory().getEquippedContents()){
-					if(i != null) PrintHandler.println(i.getName());
-				}
+				PrintHandler.printPlayerInventory();
 				getPlayerAction();
 				return;
 			
@@ -146,6 +136,31 @@ public class InputHandler {
 			PrintHandler.println(helpString);
 			getPlayerAction();
 		}
+	}
+	
+	public static String getPlayerChestAction(){
+		PrintHandler.println("Would you like to [p]ickup an item, or [d]rop one?");
+		String s = scan.nextLine();
+		switch(s){
+		case "p":
+			PrintHandler.println("Which item would you like to pickup?");
+			break;
+		case "d":
+			PrintHandler.println("Which item would you like to drop? (type \'#i\' for your inventory)");
+			break;
+		default:
+			PrintHandler.println("No option succusfully chosen, cancelling operation.");
+			return null;
+		}
+		String s2 = scan.nextLine();
+		if(s2.contains("#i")){
+			PrintHandler.printPlayerInventory();
+			PrintHandler.println("Item: ");
+			s += scan.nextLine();
+		}
+		else s += s2;
+		
+		return s;
 	}
 	
 	public static boolean getPlayerConfirmation(String st){

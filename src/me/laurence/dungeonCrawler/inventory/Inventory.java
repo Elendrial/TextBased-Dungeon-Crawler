@@ -28,6 +28,22 @@ public class Inventory {
 		return false;
 	}
 	
+	public Inventory addUncheckedItem(Item i){
+		if(contents.size() < maxSize){ 
+			contents.add(i);
+		}
+		return this;
+	}
+	
+	public Item getItem(String s){
+		for(Item i : contents){
+			if(i.getName().equals(s)){
+				return i;
+			}
+		}
+		return null;
+	}
+	
 	public boolean removeItem(Item i){
 		if(contents.contains(i)){
 			contents.remove(i);
