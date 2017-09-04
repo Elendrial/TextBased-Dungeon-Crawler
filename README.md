@@ -9,10 +9,9 @@ If it's ever finished, that is...
 TODO list:
 - Add a decent floor generation system.
 - Add a status effect system.
-- Add ranged combat for player.
+- Fix combat. It just doesn't work (also ranged combat system).
 - Make things more consistent.
 - Add more Entities/Items
-- Add score system
 - Check if possible to avoid casting in 'x'List without bloat.
 - Print out the commands in alphabetical order.
 

@@ -44,7 +44,13 @@ public class PrintHandler {
 		println("Difficulty\t:\t" + GameData.Dungeon.difficulty);
 		println("Current Floor\t:\t" + GameData.Dungeon.floor);
 		println("Lowest Floor\t:\t" + GameData.Dungeon.lowestFloor);
+		println("Current Score\t:\t" + GameData.Dungeon.currentScore);
 	}
+	
+	public static void printGlobalStats(){
+		println("Highest Score\t:\t" + GameData.Global.highScore);
+		println("Lowest Floor\t:\t" + GameData.Global.lowestFloor);
+	} 
 
 	public static void printEntityInfo(Entity e) {
 		println(e.getCharCode() + ":" + e.getName() + "\t:\t(" + e.getPosition().x + ", " + e.getPosition().y + ")");

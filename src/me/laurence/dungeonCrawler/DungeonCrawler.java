@@ -6,6 +6,7 @@ import java.util.Random;
 import me.laurence.dungeonCrawler.entities.EntityList;
 import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
 import me.laurence.dungeonCrawler.general.Floor;
+import me.laurence.dungeonCrawler.handlers.FileHandler;
 import me.laurence.dungeonCrawler.handlers.InputHandler;
 import me.laurence.dungeonCrawler.handlers.PrintHandler;
 import me.laurence.dungeonCrawler.items.ItemList;
@@ -21,6 +22,8 @@ public class DungeonCrawler {
 	public static int tempDifficultyLength = 0;
 	
 	public static void main(String[] args){
+		FileHandler.loadData();
+		
 		EntityList.initList();
 		ItemList.initList();
 		InputHandler.initList();
@@ -44,7 +47,8 @@ public class DungeonCrawler {
 	}
 	
 	public static void gameOver(boolean survived){
-		
+		FileHandler.saveData();
+		System.exit(0);
 	}
 	
 	public static void changeDifficulty(){

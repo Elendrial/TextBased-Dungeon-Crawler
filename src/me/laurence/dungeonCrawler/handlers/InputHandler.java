@@ -48,6 +48,11 @@ public class InputHandler {
 				getPlayerAction();
 				return;
 			
+			case "globalstats":
+				PrintHandler.printGlobalStats();
+				getPlayerAction();
+				return;
+				
 			case "mv":
 				if(s.split(" ").length > 0){
 					char[] s2 = s.split(" ")[1].toCharArray();
@@ -133,6 +138,11 @@ public class InputHandler {
 				PlayerInventory inv = (PlayerInventory) DungeonCrawler.player.getInventory();
 				if(inv.isEquipped(s.substring(8)))
 					inv.addItem(inv.unequipItem(s.substring(8)));
+				return;
+			
+			case "exit":
+				if(InputHandler.getPlayerConfirmation("Are you sure you wish to exit? Only your highscore and lowest floor will be saved."))
+					DungeonCrawler.gameOver(true);
 				return;
 			}
 		}
@@ -220,16 +230,18 @@ public class InputHandler {
 	}
 	
 	public static void initList(){
-		commandDesc.put("stats", "Print stats for this run");
-		commandDesc.put("mv", "Move in l/r/d/u directions - allows for multiple moves in 1 turn, eg1: 'mv l', eg2: 'mv rrurd'");
+		commandDesc.put("stats", "Print stats for this run.");
+		commandDesc.put("globalstats", "Print global stats.");
+		commandDesc.put("mv", "Move in l/r/d/u directions - allows for multiple moves in 1 turn, eg1: 'mv l', eg2: 'mv rrurd'.");
 		commandDesc.put("i", "Interact in l/r/d/u direction.");
 		commandDesc.put("matk", "Melee Attack in l/r/d/u direction.");
 	//	commandDesc.put("ratk", "Ranged attack in l/r/d/u direction.");
 	//	commandDesc.put("satk", "Spell Attack in l/r/d/u direction.");
 		commandDesc.put("?", "Show this help menu.");
 		commandDesc.put("inv", "Display your inventory.");
-		commandDesc.put("equip", "Equip \"x\" item from your inventory");
-		commandDesc.put("unequip", "Remove \"x\" item from your equip list and add it to your inventory");
+		commandDesc.put("equip", "Equip \"x\" item from your inventory.");
+		commandDesc.put("unequip", "Remove \"x\" item from your equip list and add it to your inventory.");
+		commandDesc.put("exit", "Quits game - note: each run does not save, just highscore and lowest floor.");
 		
 		if(GameData.Global.debug){
 			commandDesc.put("#list", "Lists all entities & their positions");

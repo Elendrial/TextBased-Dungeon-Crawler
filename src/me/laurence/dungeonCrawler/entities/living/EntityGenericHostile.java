@@ -2,11 +2,13 @@ package me.laurence.dungeonCrawler.entities.living;
 
 import java.awt.Point;
 
+import me.laurence.dungeonCrawler.GameData;
 import me.laurence.dungeonCrawler.ai.AIHostile;
 
 public class EntityGenericHostile extends EntityLiving{
 
 	protected float preferredDifficulty = 1;
+	protected int score = 0;
 	
 	public EntityGenericHostile(){
 		super();
@@ -24,12 +26,25 @@ public class EntityGenericHostile extends EntityLiving{
 		((AIHostile) this.ai).e = this;
 	}
 	
+	public void onDestroy(EntityLiving e){
+		if(e instanceof EntityPlayer) GameData.Dungeon.currentScore += score * GameData.Dungeon.difficulty;
+	}
+	
 	public float getPreferredDifficulty() {
 		return preferredDifficulty;
 	}
 
 	public EntityGenericHostile setPreferredDifficulty(float preferredDifficulty) {
 		this.preferredDifficulty = preferredDifficulty;
+		return this;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public EntityGenericHostile setScore(int score) {
+		this.score = score;
 		return this;
 	}
 
