@@ -3,6 +3,7 @@ package me.laurence.dungeonCrawler.handlers;
 import me.laurence.dungeonCrawler.DungeonCrawler;
 import me.laurence.dungeonCrawler.GameData;
 import me.laurence.dungeonCrawler.entities.Entity;
+import me.laurence.dungeonCrawler.entities.living.EntityPlayer;
 import me.laurence.dungeonCrawler.general.Floor;
 import me.laurence.dungeonCrawler.inventory.Inventory;
 import me.laurence.dungeonCrawler.items.Item;
@@ -50,7 +51,18 @@ public class PrintHandler {
 	public static void printGlobalStats(){
 		println("Highest Score\t:\t" + GameData.Global.highScore);
 		println("Lowest Floor\t:\t" + GameData.Global.lowestFloor);
-	} 
+	}
+	
+	public static void printPlayerStats(){
+		EntityPlayer p = DungeonCrawler.player;
+		println("Current player statistics (inc. item buffs) :");
+		println("health\t\t:\t" + p.getHealth());
+		println("maxhealth\t:\t" + p.getEffectiveMaxHealth());
+		println("atk\t\t:\t" + p.getEffectiveAtk());
+		println("def\t\t:\t" + p.getEffectiveDef());
+		println("satk\t\t:\t" + p.getEffectiveSatk());
+		println("sdef\t\t:\t" + p.getEffectiveSdef());
+	}
 
 	public static void printEntityInfo(Entity e) {
 		println(e.getCharCode() + ":" + e.getName() + "\t:\t(" + e.getPosition().x + ", " + e.getPosition().y + ")");

@@ -53,6 +53,11 @@ public class InputHandler {
 				getPlayerAction();
 				return;
 				
+			case "playerstats":
+				PrintHandler.printPlayerStats();
+				getPlayerAction();
+				return;
+				
 			case "mv":
 				if(s.split(" ").length > 0){
 					char[] s2 = s.split(" ")[1].toCharArray();
@@ -232,6 +237,7 @@ public class InputHandler {
 	public static void initList(){
 		commandDesc.put("stats", "Print stats for this run.");
 		commandDesc.put("globalstats", "Print global stats.");
+		commandDesc.put("playerstats", "Print out the player's current stats.");
 		commandDesc.put("mv", "Move in l/r/d/u directions - allows for multiple moves in 1 turn, eg1: 'mv l', eg2: 'mv rrurd'.");
 		commandDesc.put("i", "Interact in l/r/d/u direction.");
 		commandDesc.put("matk", "Melee Attack in l/r/d/u direction.");
