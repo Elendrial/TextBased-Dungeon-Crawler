@@ -77,7 +77,7 @@ public class InventoryEquips extends Inventory {
 	public int getMaxHealth() {
 		int maxHealth = 0;
 		for(ItemEquippable i : equippedContents){
-			maxHealth += i.getStats().getMaxHealth();
+			if(i!=null) maxHealth += i.getStats().getMaxHealth();
 		}
 		return maxHealth;
 	}
@@ -85,7 +85,7 @@ public class InventoryEquips extends Inventory {
 	public int getMoveRange() {
 		int moveRange = 0;
 		for(ItemEquippable i : equippedContents){
-			moveRange += i.getStats().getMoveRange();
+			if(i!=null) moveRange += i.getStats().getMoveRange();
 		}
 		return moveRange;
 	}
@@ -93,7 +93,7 @@ public class InventoryEquips extends Inventory {
 	public int getAttackRange() {
 		int attackRange = 0;
 		for(ItemEquippable i : equippedContents){
-			attackRange += i.getStats().getAttackRange();
+			if(i!=null) attackRange += i.getStats().getAttackRange();
 		}
 		return attackRange;
 	}
@@ -101,7 +101,7 @@ public class InventoryEquips extends Inventory {
 	public int getDef() {
 		int def = 0;
 		for(ItemEquippable i : equippedContents){
-			def += i.getStats().getDef();
+			if(i!=null) def += i.getStats().getDef();
 		}
 		return def;
 	}
@@ -109,7 +109,7 @@ public class InventoryEquips extends Inventory {
 	public int getAtk() {
 		int atk = 0;
 		for(ItemEquippable i : equippedContents){
-			atk += i.getStats().getAtk();
+			if(i!=null) atk += i.getStats().getAtk();
 		}
 		return atk;
 	}
@@ -117,7 +117,7 @@ public class InventoryEquips extends Inventory {
 	public int getSatk() {
 		int satk = 0;
 		for(ItemEquippable i : equippedContents){
-			satk += i.getStats().getSatk();
+			if(i!=null) satk += i.getStats().getSatk();
 		}
 		return satk;
 	}
@@ -125,7 +125,7 @@ public class InventoryEquips extends Inventory {
 	public int getSdef() {
 		int sdef = 0;
 		for(ItemEquippable i : equippedContents){
-			sdef += i.getStats().getSdef();
+			if(i!=null) sdef += i.getStats().getSdef();
 		}
 		return sdef;
 	}
