@@ -18,11 +18,11 @@ public class AIHostile implements IEntityAI{
 		Point pp = DungeonCrawler.player.getPosition();
 		int xDif, yDif;
 		boolean inRange = false;
-		for(int i = 0 ; i < e.getBaseMoveRange() && !inRange; i++){
+		for(int i = 0 ; i < e.getEffectiveMoveRange() && !inRange; i++){
 			xDif = pp.x - e.getPosition().x;
 			yDif = pp.y - e.getPosition().y;
 			
-			inRange = (xDif * xDif) + (yDif * yDif) < e.getBaseAttackRange();
+			inRange = (xDif * xDif) + (yDif * yDif) < e.getEffectiveAttackRange();
 			
 			if(!inRange){
 				if(Math.abs(xDif) > Math.abs(yDif)) e.moveBy(xDif / Math.abs(xDif) ,0);

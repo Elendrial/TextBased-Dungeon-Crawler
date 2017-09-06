@@ -24,7 +24,7 @@ public class ItemFood extends Item{
 	public void onUse(Entity e) {
 		if(e instanceof EntityLiving){
 			((EntityLiving) e).setHealth(((EntityLiving) e).getHealth() + healthGained);
-			PrintHandler.println(e.getName() + " used " + this.getName());
+			PrintHandler.println(e.getName() + " used " + this.getName() + " and regained " + healthGained + " health.");
 		}
 	}
 
@@ -32,8 +32,9 @@ public class ItemFood extends Item{
 		return healthGained;
 	}
 
-	public void setHealthGained(int healthGained) {
+	public ItemFood setHealthGained(int healthGained) {
 		this.healthGained = healthGained;
+		return this;
 	}
 	
 	@Override

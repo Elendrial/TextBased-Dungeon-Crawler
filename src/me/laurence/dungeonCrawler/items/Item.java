@@ -2,6 +2,7 @@ package me.laurence.dungeonCrawler.items;
 
 import me.laurence.dungeonCrawler.entities.Entity;
 import me.laurence.dungeonCrawler.entities.living.EntityLiving;
+import me.laurence.dungeonCrawler.handlers.PrintHandler;
 
 abstract public class Item extends Entity{
 
@@ -21,7 +22,6 @@ abstract public class Item extends Entity{
 	}
 	
 	@Override
-	public float getSpawnChance() {return 0;}
 	public float getSpawnChance(float difficulty) {return 0;}
 
 	@Override
@@ -33,6 +33,7 @@ abstract public class Item extends Entity{
 	public void onInteract(Entity e) {
 		if(e instanceof EntityLiving){
 			((EntityLiving) e).getInventory().addItem(this);
+			PrintHandler.println("Picked up a " + this.name);
 			this.destroy(e);
 		}
 	}
@@ -55,5 +56,21 @@ abstract public class Item extends Entity{
 	}
 
 	abstract public Item clone();
+
+	public boolean isStackable() {
+		return stackable;
+	}
+
+	public void setStackable(boolean stackable) {
+		this.stackable = stackable;
+	}
+
+	public int getStacked() {
+		return stacked;
+	}
+
+	public void setStacked(int stacked) {
+		this.stacked = stacked;
+	}
 	
 }

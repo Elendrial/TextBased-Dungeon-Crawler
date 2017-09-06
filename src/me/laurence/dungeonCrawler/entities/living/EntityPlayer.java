@@ -18,7 +18,7 @@ public class EntityPlayer extends EntityLiving{
 		stats.setSatk(1);
 		stats.setSdef(0);
 		
-		this.canPassThrough = true;
+		this.canPassThrough = false;
 		this.health = 10;
 		this.position = new Point(10, 5);
 		this.inventory = new PlayerInventory();

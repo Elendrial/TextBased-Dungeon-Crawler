@@ -62,7 +62,7 @@ public class InputHandler {
 				if(s.split(" ").length > 0){
 					char[] s2 = s.split(" ")[1].toCharArray();
 					EntityPlayer p = DungeonCrawler.player;
-					for(int i = 0; i < s2.length && i < p.getBaseMoveRange(); i++){
+					for(int i = 0; i < s2.length && i < p.getEffectiveMoveRange(); i++){
 						switch(s2[i]){
 						case 'u': p.moveBy(0, -1); break;
 						case 'd': p.moveBy(0, 1); break;
@@ -98,6 +98,16 @@ public class InputHandler {
 				}
 				else{
 					PrintHandler.println(helpString);
+					getPlayerAction();
+				}
+				return;
+				
+			case "u":
+				if(DungeonCrawler.player.getInventory().containsItem(s.substring(2))){
+					DungeonCrawler.player.getInventory().getItem(s.substring(2)).onUse(DungeonCrawler.player);
+				}
+				else{
+					PrintHandler.println("You do not currently have '" + s.substring(6) + "' in your inventory.");
 					getPlayerAction();
 				}
 				return;
@@ -206,6 +216,7 @@ public class InputHandler {
 	
 	
 	public static void debugCommand(String s){
+		DungeonCrawler.floorUpdateSkip = true;
 		switch(s.split(" ")[0]){
 		case "list":
 			for(Entity e : DungeonCrawler.getFloor().entities){
@@ -231,7 +242,6 @@ public class InputHandler {
 			}
 			return;
 		}
-		DungeonCrawler.floorUpdateSkip = true;
 	}
 	
 	public static void initList(){
@@ -240,6 +250,7 @@ public class InputHandler {
 		commandDesc.put("playerstats", "Print out the player's current stats.");
 		commandDesc.put("mv", "Move in l/r/d/u directions - allows for multiple moves in 1 turn, eg1: 'mv l', eg2: 'mv rrurd'.");
 		commandDesc.put("i", "Interact in l/r/d/u direction.");
+		commandDesc.put("u", "Use an item in your inventory.");
 		commandDesc.put("matk", "Melee Attack in l/r/d/u direction.");
 	//	commandDesc.put("ratk", "Ranged attack in l/r/d/u direction.");
 	//	commandDesc.put("satk", "Spell Attack in l/r/d/u direction.");
