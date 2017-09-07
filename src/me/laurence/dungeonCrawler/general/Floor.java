@@ -42,15 +42,19 @@ public class Floor {
 		entities.add(new EntityStairs().setFloorMove(-1).setPosition(new Point(DungeonCrawler.player.getPosition())));
 		entities.add(new EntityStairs().setFloorMove(1).setPosition(getRandomPoint(true)));
 		
+		Entity e;
 		for(int i = 0; i < Math.ceil(floor * difficulty) + livingVariance; i++){
-			entities.add(EntityList.getRandomEntityLiving(difficulty * floor).adjustStats(difficulty).setPosition(getRandomPoint(true)));
+			e = EntityList.getRandomEntityLiving(difficulty * floor);
+			if(e != null) entities.add(((EntityLiving) e).adjustStats(difficulty).setPosition(getRandomPoint(true)));
+			
 		}
 		
 		for(int i = 0; i < Math.floor(floor * difficulty) + livingVariance; i++){
 			if(DungeonCrawler.rand.nextFloat() < EntityList.staticEntities.size()/(EntityList.staticEntities.size() + ItemList.items.size()))
-				entities.add(EntityList.getRandomEntityStatic(difficulty * floor).setPosition(getRandomPoint(true)));
-			else
-				entities.add(ItemList.getRandomItem(difficulty * floor).setPosition(getRandomPoint(true)));
+				e = EntityList.getRandomEntityStatic(difficulty * floor);
+			else 
+				e = ItemList.getRandomItem(difficulty * floor);
+			if(e != null) entities.add(e.setPosition(getRandomPoint(true)));
 		}
 		
 	}
