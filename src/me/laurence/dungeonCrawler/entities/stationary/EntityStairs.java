@@ -48,7 +48,7 @@ public class EntityStairs extends EntityStatic{
 	}
 
 	@Override
-	public Entity clone() {
+	public EntityStairs clone() {
 		return new EntityStairs(this);
 	}
 	

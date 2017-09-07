@@ -45,10 +45,11 @@ public class EntityList {
 		if(e instanceof EntityStatic) staticEntities.put(e.name, (EntityStatic) e);
 	}
 
-	private static HashMap<Float, HashMap<EntityLiving, Float>> chancesList = new HashMap<Float, HashMap<EntityLiving, Float>>();
+	private static HashMap<Float, HashMap<EntityLiving, Float>> lChancesList = new HashMap<Float, HashMap<EntityLiving, Float>>();
+	private static HashMap<Float, HashMap<EntityStatic, Float>> sChancesList = new HashMap<Float, HashMap<EntityStatic, Float>>();
+	
 	public static EntityLiving getRandomEntityLiving(float difficulty) {
-		
-		if(!chancesList.containsKey(difficulty)){
+		if(!lChancesList.containsKey(difficulty)){
 			HashMap<EntityLiving, Float> chances = new HashMap<EntityLiving, Float>();
 			float total = 0, f;
 			for(String s : livingEntities.keySet()){
@@ -62,15 +63,45 @@ public class EntityList {
 				chances.put(e, chances.get(e)/total);
 			}
 			
-			chancesList.put(difficulty, chances);
+			lChancesList.put(difficulty, chances);
 		}
 		
 		final float f = DungeonCrawler.rand.nextFloat();
 		float count = 0;
-		for(EntityLiving e : chancesList.get(difficulty).keySet()){
-			count += chancesList.get(difficulty).get(e);
+		for(EntityLiving e : lChancesList.get(difficulty).keySet()){
+			count += lChancesList.get(difficulty).get(e);
 			if(count >= f) return e.clone();
 		}
+		
+		System.err.println("No entity found.");
+		return null;
+	}
+	
+	public static EntityStatic getRandomEntityStatic(float difficulty) {
+		if(!lChancesList.containsKey(difficulty)){
+			HashMap<EntityStatic, Float> chances = new HashMap<EntityStatic, Float>();
+			float total = 0, f;
+			for(String s : staticEntities.keySet()){
+				f= staticEntities.get(s).getSpawnChance(difficulty);
+				
+				chances.put(staticEntities.get(s), f);
+				total += f;
+			}
+			
+			for(EntityStatic e : chances.keySet()){
+				chances.put(e, chances.get(e)/total);
+			}
+			
+			sChancesList.put(difficulty, chances);
+		}
+		
+		final float f = DungeonCrawler.rand.nextFloat();
+		float count = 0;
+		for(EntityStatic e : sChancesList.get(difficulty).keySet()){
+			count += sChancesList.get(difficulty).get(e);
+			if(count >= f) return e.clone();
+		}
+		
 		System.err.println("No entity found.");
 		return null;
 	}

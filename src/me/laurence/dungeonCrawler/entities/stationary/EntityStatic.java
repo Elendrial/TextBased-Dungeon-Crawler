@@ -22,4 +22,6 @@ abstract public class EntityStatic extends Entity{
 	public void onWalkOn(Entity e) {}
 	public void onDestroy(Entity e){}
 	
+	abstract public EntityStatic clone();
+	
 }

@@ -10,6 +10,7 @@ import me.laurence.dungeonCrawler.entities.living.EntityLiving;
 import me.laurence.dungeonCrawler.entities.stationary.EntityStairs;
 import me.laurence.dungeonCrawler.entities.stationary.EntityWall;
 import me.laurence.dungeonCrawler.handlers.PrintHandler;
+import me.laurence.dungeonCrawler.items.ItemList;
 
 public class Floor {
 	
@@ -43,6 +44,13 @@ public class Floor {
 		
 		for(int i = 0; i < Math.ceil(floor * difficulty) + livingVariance; i++){
 			entities.add(EntityList.getRandomEntityLiving(difficulty * floor).adjustStats(difficulty).setPosition(getRandomPoint(true)));
+		}
+		
+		for(int i = 0; i < Math.floor(floor * difficulty) + livingVariance; i++){
+			if(DungeonCrawler.rand.nextFloat() < EntityList.staticEntities.size()/(EntityList.staticEntities.size() + ItemList.items.size()))
+				entities.add(EntityList.getRandomEntityStatic(difficulty * floor).setPosition(getRandomPoint(true)));
+			else
+				entities.add(ItemList.getRandomItem(difficulty * floor).setPosition(getRandomPoint(true)));
 		}
 		
 	}
